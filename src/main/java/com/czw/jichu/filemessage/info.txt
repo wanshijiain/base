@@ -1,0 +1,5 @@
+#zhushixinxi
+#Wed Jun 12 14:42:08 CST 2013
+zhangsan=20
+lisi=49
+wangwu=39

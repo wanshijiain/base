@@ -46,7 +46,6 @@ public class ESBulk {
 	public void bulkTest() {
 		Client client = initClient();
 		BulkRequestBuilder bulkRequest = client.prepareBulk();
-
 		// either use client#prepare, or use Requests# to directly build
 		// index/delete requests
 		try {
