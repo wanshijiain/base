@@ -6,11 +6,10 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/** 
+/**
  * 
  * @author Zevi Chan
- * @date 2016年6月14日 上午11:21:58 
- * 
+ * @date 2016-07-28 23:19:54
  */
 public class EnumBitField {
 	public static Logger log = LoggerFactory.getLogger(EnumBitField.class);

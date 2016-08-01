@@ -1,0 +1,67 @@
+import java.util.*;
+class GenericDemo5 
+{
+	public static void main(String[] args) 
+	{
+		/*
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("aaa");
+		al.add("bbb");
+		al.add("ccc");
+		ArrayList<Integer> all=new ArrayList<Integer>();
+		all.add(11);
+		all.add(22);
+		all.add(33);
+
+		print(al);//使用通配符可以传入不同类型的元素
+		print(all);
+		*/
+
+		ArrayList<Person> all=new ArrayList<Person>();
+		all.add(new Person("aaa"));
+		all.add(new Person("bbb"));
+		all.add(new Person("ccc"));
+
+	}
+	public static void print(ArrayList<Person> al)
+	{
+		Iterator<Person> it=al.iterator();
+		while(it.hasNext())
+		{
+			System.out.println(it.next().getName());
+		}
+	}
+	/*
+	public static void print(ArrayList<?> al)//当类型不确定是，使用通配符  ？   来表示
+	{
+		
+		Iterator<?> it=al.iterator();
+		while(it.hasNext())
+		{
+			System.out.println(it.next());
+		}
+		
+	}
+	*/
+}
+class Person
+{
+	private String name;
+	Person(String name)
+	{
+		this.name=name;
+	}
+	public String getName()
+	{
+		return name;
+	}
+}
+class Student extends Person
+{
+	Student(String name)
+	{
+		super(name);
+	}
+}
+
+

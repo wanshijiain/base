@@ -1,0 +1,30 @@
+package IODemo;
+import java.io.*;
+public class FileReaderDemo {
+
+	/**
+	 * @param args
+	 */
+	//应该是用FileWriterDemo中的方式来抛出异常，此处省略
+	public static void main(String[] args) throws Exception{
+		// TODO Auto-generated method stub
+		FileReader fr=new FileReader("Demo.txt");//文件不存在会抛出FileNotFoundException
+		//定义一个字符数组
+		char[] buf=new char[13];
+		int num=fr.read(buf);
+		
+		System.out.println("num="+num+"...buf="+new String(buf));
+		/*
+		while(true)
+		{
+			int ch=fr.read();
+			if(ch==-1) break;
+			//read方法一次读一个字符，指针指向下一个字符
+			System.out.println("ch="+(char)ch);
+		}
+		*/
+		fr.close();
+		
+	}
+
+}
