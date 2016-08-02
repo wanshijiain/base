@@ -13,7 +13,9 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
+import com.czw.config.Constants;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 /**
  * @author Zevi Chan
@@ -28,7 +30,7 @@ public class ESUtils {
 	private static StringBuilder sb = new StringBuilder();
 	
 	public static void initSettings(){
-		settings = Settings.settingsBuilder().put("cluster.name", "zevichan")
+		settings = Settings.settingsBuilder().put("cluster.name", Constants.ES_CLUSTER_NAME)
 				.put("client.transport.sniff", true).build();
 	}
 	
@@ -36,12 +38,13 @@ public class ESUtils {
 		initSettings();
 		try {
 			client = TransportClient.builder().settings(settings).build()
-					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
+					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"),9300));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
 		return client;
-	}
+    }
+
 	
 	/**
 	 * 打印GetResponse结果
@@ -108,7 +111,9 @@ public class ESUtils {
 		return sb.deleteCharAt(sb.length()-1).append("】").toString();
 	}
 	
-	
+	public static  void close(){
+		client.close();
+	}
 	
 	
 	

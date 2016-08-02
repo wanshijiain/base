@@ -11,8 +11,11 @@ import org.elasticsearch.action.get.MultiGetResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import com.czw.util.ESUtils;
 
 /**
  * @author Zevi Chan
@@ -71,11 +74,24 @@ public class ESGet {
 	}
 	
 	@Test
+	@Ignore
 	public void countTest1(){
 		Client c = initClient();
 		SearchResponse response = c.prepareSearch("goods","info").setQuery(QueryBuilders.matchAllQuery()).get();
 			System.out.println(response == null? "null":parseHeaderJson(response.getHeaders()));
 	}
 	
-
+	/**
+	 * 测试连接
+	 */
+	@Test
+	public void test(){
+		initClient().prepareGet().get();
+	}
+	
+	@After
+	public void closeClient(){
+		ESUtils.close();
+		System.out.println("It has been closed!");
+	}
 }

@@ -34,7 +34,7 @@ public class MainTest {
 	 * 枚举方法
 	 */
 	@Test
-//	@Ignore
+	@Ignore
 	public void enumOperation(){
 		double x = 2.0,
 				y = 1.0;
@@ -105,30 +105,13 @@ public class MainTest {
 		
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 枚举定义抽象方法
+	 */
+	@Test
+	public void enumFuncTest(){
+		log.info("enumFuncTest.ONE.getName = {}",EnumFunc.ONE.getName());
+	}
 	
 	
 	
