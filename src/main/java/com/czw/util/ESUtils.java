@@ -129,7 +129,9 @@ public class ESUtils {
 	}
 	
 	public static  void close(){
+		ComUtils.end();
 		client.close();
+		System.out.println("It has been closed!");
 	}
 	
 	

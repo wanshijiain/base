@@ -24,7 +24,6 @@ public class ESDelete {
 	@After
 	public void closeClient(){
 		ESUtils.close();
-		System.out.println("It has been closed!");
 	}
 
 }

@@ -253,9 +253,7 @@ public class ESSearch {
 
 	@After
 	public void closeClient() {
-		ComUtils.end();
 		ESUtils.close();
-		System.out.println("It has been closed!");
 	}
 
 }

@@ -143,8 +143,6 @@ public class ESBulk {
 				else
 					System.out.println("插入完毕." + bulkResponse.toString());
 			}
-			System.out.println("结束");
-			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -185,8 +183,6 @@ public class ESBulk {
 					out.write("\r\n");
 				}
 			}
-			System.out.println("查询结束");
-			out.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -198,7 +194,6 @@ public class ESBulk {
 	@After
 	public void closeClient(){
 		ESUtils.close();
-		System.out.println("It has been closed!");
 	}
 
 }
