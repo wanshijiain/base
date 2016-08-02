@@ -26,9 +26,12 @@ import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHits;
+import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.czw.elastic.entity.IndexTypeBean;
+import com.czw.util.ESUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -100,15 +103,22 @@ public class ESBulk {
 				.source(/* your doc here */));
 		bulkProcessor.add(new DeleteRequest("twitter", "tweet", "2"));
 	}
-
+	
+	
 	/**
 	 * 将导出的文本文件批量导入es中
 	 */
 	@Test
 	public void bulkBatchImport() {
+//		IndexTypeBean itb = new IndexTypeBean("goods","info","d:\\tmp\\goods_info.dat");
+//		IndexTypeBean itb = new IndexTypeBean("operate","log","d:\\tmp\\admin_op_log.dat");		数据太大需要优化
+//		IndexTypeBean itb = new IndexTypeBean("bill","record","d:\\tmp\\bill_record_info.dat");
+//		IndexTypeBean itb = new IndexTypeBean("city","name","d:\\tmp\\city.dat");
+//		IndexTypeBean itb = new IndexTypeBean("county","name","d:\\tmp\\county.dat");
+		IndexTypeBean itb = new IndexTypeBean("coupon","info","d:\\tmp\\coupon_info.dat");
 		Client client = initClient();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("d:\\tmp\\goods_info.dat"));
+			BufferedReader br = new BufferedReader(new FileReader(itb.getFilePath()));
 			String json = null;
 			BulkResponse bulkResponse = null;
 			int count = 0;
@@ -119,8 +129,8 @@ public class ESBulk {
 				// System.out.println("_id="+jn.get("_id"));
 				// , jn.get("_id") + "-" + jn.get("goodsCode")
 				System.out.println(count);
-				bulkRequest.add(client.prepareIndex("goods", "info").setSource(json));
-				if (count % 10 == 0) {
+				bulkRequest.add(client.prepareIndex(itb.getIndex(), itb.getType()).setSource(json));
+				if (count % 1000 == 0) {
 					bulkResponse = bulkRequest.execute().actionGet();
 					System.out.println("提交了：" + count);
 				}
@@ -184,6 +194,11 @@ public class ESBulk {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@After
+	public void closeClient(){
+		ESUtils.close();
+		System.out.println("It has been closed!");
 	}
 
 }

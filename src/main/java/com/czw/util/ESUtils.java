@@ -7,6 +7,7 @@ import java.util.Set;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
@@ -29,8 +30,11 @@ public class ESUtils {
 	private static InetSocketTransportAddress inetSocketTransportAddress;
 	private static StringBuilder sb = new StringBuilder();
 	
+	private static String IP1 = "192.168.1.113";
+	private static String IP2 = "192.168.229.128";
+	
 	public static void initSettings(){
-		settings = Settings.settingsBuilder().put("cluster.name", Constants.ES_CLUSTER_NAME)
+		settings = Settings.settingsBuilder().put("cluster.name", Constants.ES_CLUSTER_NAME.getValue())
 				.put("client.transport.sniff", true).build();
 	}
 	
@@ -38,7 +42,7 @@ public class ESUtils {
 		initSettings();
 		try {
 			client = TransportClient.builder().settings(settings).build()
-					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"),9300));
+					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(IP2),9300));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
@@ -76,13 +80,26 @@ public class ESUtils {
 		else
 			System.out.println("\nURL:"+resURL(response)+",结果:"+parseHeaderJson(response.getHeaders()));
 	}
+	/**
+	 * 打印IndexResponse结果
+	 * @param response
+	 */
+	public static void printResponse(SearchResponse response){
+		if(null == response)
+			System.out.println("\nSearchResponse !");
+		else
+			System.out.println("\nURL:"+resURL(response)+",结果:"+parseHeaderJson(response.getHeaders()));
+	}
 	
+	public static String resURL(SearchResponse response){
+		return null;
+	}
 	public static String resURL(GetResponse response){
 		return spliceURL(response.getIndex())
-					.append("/")
-					.append(response.getType())
-					.append("/")
-					.append(response.getId()).toString();
+				.append("/")
+				.append(response.getType())
+				.append("/")
+				.append(response.getId()).toString();
 	}
 	public static String resURL(UpdateResponse response){
 		return spliceURL(response.getIndex())

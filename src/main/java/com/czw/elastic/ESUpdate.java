@@ -11,8 +11,11 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.xcontent.XContentFactory;
+import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import com.czw.util.ESUtils;
 
 /**
  * @author Zevi Chan
@@ -105,6 +108,14 @@ public class ESUpdate {
 		Client c = initClient();
 		IndexResponse ir = c.prepareIndex("goods", "info").setSource("").execute().actionGet();
 		printResponse(ir);
+	}
+	
+	
+	
+	@After
+	public void closeClient(){
+		ESUtils.close();
+		System.out.println("It has been closed!");
 	}
 
 }

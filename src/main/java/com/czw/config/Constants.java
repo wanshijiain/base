@@ -9,7 +9,8 @@ public enum Constants {
 	ES_CLUSTER_NAME("zevichan"),
 	ES_IP_LOCAL("localhost"),
 	ES_IP_127("127.0.0.1"),
-	ES_IP("192.168.1.113"),
+	ES_IP1("192.168.1.113"),
+	ES_IP2("192.168.229.128"),
 	ES_PORT("9300");
 	
 	
