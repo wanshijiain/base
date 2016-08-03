@@ -34,7 +34,7 @@ import com.czw.util.ESUtils;
  * Thread Mode: 1.NO_THREADS 当前线程执行 2.SINGLE_THREAD 另起一个线程执行所有分片
  * 3.THREAD_PER_SHARD 每个分片起个线程执行操作
  * 
- * @author Zevi Chan
+ * @author ZeviChen
  * @Date 2016-07-27 15:07:11
  */
 public class ESSearch {
@@ -46,9 +46,9 @@ public class ESSearch {
 		Map<String,String> query = new HashMap<>();
 		query.put("goodsCode", "gss_xiangjiao4");
 		
-		QueryBuilder query1 = QueryBuilders.matchPhraseQuery("goods", "gss ao");
+		QueryBuilder query1 = QueryBuilders.matchPhraseQuery("goodsName", "香蕉");
 		
-		SearchResponse response2 = client.prepareSearch("goods").setTypes("info").setQuery(query)
+		SearchResponse response2 = client.prepareSearch("goods").setTypes("info").setQuery(query1)
 				.execute().actionGet();
 		System.out.println("TotalHits:" + response2.getHits().getTotalHits());
 		for (int i = 0; i < response2.getHits().totalHits(); i++) {
