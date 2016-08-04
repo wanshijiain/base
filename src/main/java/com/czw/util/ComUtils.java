@@ -10,24 +10,28 @@ import org.slf4j.LoggerFactory;
 public class ComUtils {
 	private static long startTime = 0;
 	private static long endTime = 0;
+	private static boolean flag = false;
 	
 	private static Logger log = LoggerFactory.getLogger(ComUtils.class);
 	public static void start(){
+		flag = true;
 		System.out.println("--------------开始计时----------------");
 		startTime = System.currentTimeMillis();
 	}
 	public static void end(){
-		endTime = System.currentTimeMillis();
-		long rtn = 0;
-		if(startTime < 0)
-			startTime = 0;
-		if(endTime < 0)
-			endTime = 0;
-		rtn = endTime-startTime;
-		if(rtn == endTime)
-			rtn = 0;
-		log.info("Spend Time:{}",endTime <= startTime?0:rtn);
-		System.out.println("--------------结束计时----------------");
+		if(flag){
+			endTime = System.currentTimeMillis();
+			long rtn = 0;
+			if(startTime < 0)
+				startTime = 0;
+			if(endTime < 0)
+				endTime = 0;
+			rtn = endTime-startTime;
+			if(rtn == endTime)
+				rtn = 0;
+			log.info("Spend Time:{}",endTime <= startTime?0:rtn);
+			System.out.println("--------------结束计时----------------");
+		}
 	}
 	
 	

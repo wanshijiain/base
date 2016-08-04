@@ -144,7 +144,16 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!-- activemq -->
+		<!-- <dependency> <groupId>org.apache.activemq</groupId> <artifactId>activemq-core</artifactId> 
+			<version>5.7.0</version> </dependency> -->
 
+		<!-- rabbitmq -->
+		<dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+			<version>3.6.4</version>
+		</dependency>
 
 
 

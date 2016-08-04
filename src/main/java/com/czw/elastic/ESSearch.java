@@ -43,16 +43,18 @@ public class ESSearch {
 	@Test
 	public void searchTest() {
 		start();
-		Map<String,String> query = new HashMap<>();
-		query.put("goodsCode", "gss_xiangjiao4");
-		
-		QueryBuilder query1 = QueryBuilders.matchPhraseQuery("goodsName", "香蕉");
-		
-		SearchResponse response2 = client.prepareSearch("goods").setTypes("info").setQuery(query1)
-				.execute().actionGet();
+		Map<String, String> query = new HashMap<>();
+		query.put("name", "南区");
+
+		QueryBuilder query1 = QueryBuilders.commonTermsQuery("name", "南区");
+
+		QueryBuilder query2 = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("name", "南区"));
+
+		SearchResponse response2 = client.prepareSearch("county").setTypes("name").setQuery(query2).execute().actionGet(100);
 		System.out.println("TotalHits:" + response2.getHits().getTotalHits());
-		for (int i = 0; i < response2.getHits().totalHits(); i++) {
-			System.out.println(response2.getHits().getAt(i).sourceAsString());
+		SearchHit[] shs = response2.getHits().getHits();
+		for (SearchHit sh : shs) {
+			System.out.println(sh.sourceAsString());
 		}
 	}
 
