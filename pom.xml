@@ -148,11 +148,18 @@
 		<!-- <dependency> <groupId>org.apache.activemq</groupId> <artifactId>activemq-core</artifactId> 
 			<version>5.7.0</version> </dependency> -->
 
-		<!-- rabbitmq -->
+		<!-- rabbitmq JavaProject 连接RabbitMQ Server -->
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
 			<artifactId>amqp-client</artifactId>
 			<version>3.6.4</version>
+		</dependency>
+
+		<!-- Spring AMQP,Spring提供的访问RabbitMQ的JavaClient -->
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+			<version>1.6.1.RELEASE</version>
 		</dependency>
 
 
