@@ -6,37 +6,41 @@
 	<display-name>base</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<!-- annotation bean configuration -->
+	<!-- <context-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value> 
+		</context-param> -->
+
+	<!-- 配置文件 -->
 	<context-param>
-		<param-name>contextClass</param-name>
-		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 	
 	<!-- spring -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+
 	<!-- springmvc -->
 	<servlet>
-		<servlet-name>appServlet</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
-			<param-name>contextClass</param-name>
-			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplciationContext</param-value>
-		</init-param>
-		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>com.czw.web.config.WebConfig</param-value>
+			<param-value>classpath:springmvc-servlet.xml</param-value>
 		</init-param>
+		<!-- <init-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplciationContext</param-value> 
+			</init-param> <init-param> <param-name>contextConfigLocation</param-name> 
+			<param-value>com.czw.spring.web.config.WebConfig</param-value> </init-param> -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<!-- root mapping -->
 	<servlet-mapping>
-		<servlet-name>appServlet</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>

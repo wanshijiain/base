@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd"
+         updateCheck="true" monitoring="autodetect"
+         dynamicConfig="true">
+
+	<!-- <?xml version="1.0" encoding="UTF-8"?>  
+	<ehcache:config
+	    xmlns:ehcache="http://www.ehcache.org/v3"
+	    xmlns:jcache="http://www.ehcache.org/v3/jsr107"> -->
+    
+	<!-- =========================================缓存地址配置================================================= -->
+	<!-- 缓存在磁盘中的位置(user.home, user.dir, java.io.tmpdir) -->
+    <diskStore path="d:\\tmp\\ehcache"/>
+	
+	<!-- =========================================缓存添加时的事件监听(自定义实现类)============================ -->
+	<!--指定CacheManagerEventListenerFactory，这个对象在缓存添加的时候会得到相应的通知。
+	CacheManagerEventListenerFactory的属性：
+	*class ：CacheManagerEventListenerFactory的一个实现类。
+	*properties ：CacheManagerEventListenerFactory的属性值，以逗号(,)分割多个属性。
+	如果没有实现类被指定，则系统不创建CacheManager的监听器，没有默认值
+	
+	<cacheManagerEventListenerFactory class="" properties="" />-->
+	
+	
+	<!-- =========================================分布式缓存通信=============================================== -->
+	<!--在进行分布式缓存的应用时需要指定CacheManagerPeerProviderFactory，用来生成CacheManagerPeerProvider的实例，
+	以便和集群中的其他CacheManager通信。
+	CacheManagerPeerProvider的属性：
+	*class ：CacheManagerPeerProviderFactory的一个实现类。
+	*properties ：CacheManagerPeerProviderFactory的属性值，以逗号(,)分割多个属性。
+	Ehcache内建了2种基于RMI分布系统的通信策略：
+	*automatic ：使用多播组。在一个节点加入或者推出集群的时候自动感应。
+	*manual ：硬编码方式
+	
+	<cacheManagerPeerListenerFactory class="" properties="" />-->
+	
+	<!-- =========================================默认缓存配置================================================ -->
+	<!--默认缓存配置，以下属性是必须的：
+	name ：cache的标识符，在一个CacheManager中必须唯一。
+	maxElementsInMemory ： 在内存中缓存的element的最大数目。
+	maxElementsOnDisk ： 在磁盘上缓存的element的最大数目。
+	eternal ： 设定缓存的elements是否有有效期。如果为true，timeouts属性被忽略。
+	overflowToDisk ： 设定当内存缓存溢出的时候是否将过期的element缓存到磁盘上。
+	
+	以下属性是可选的：
+	timeToIdleSeconds ： 缓存element在过期前的空闲时间。
+	timeToLiveSeconds ： 缓存element的有效生命期。
+	diskPersistent ： 在VM重启的时候是否持久化磁盘缓存，默认是false。
+	diskExpiryThreadIntervalSeconds ： 磁盘缓存的清理线程运行间隔，默认是120秒.
+	memoryStoreEvictionPolicy ： 当内存缓存达到最大，有新的element加入的时候，
+	移除缓存中element的策略。默认是LRU，可选的有LFU和FIFO
+	
+	缓存子元素：
+	cacheEventListenerFactory：注册相应的的缓存监听类，用于处理缓存事件，如put,remove,update,和expire
+	bootstrapCacheLoaderFactory:指定相应的BootstrapCacheLoader，用于在初始化缓存，以及自动设置。
+	
+	
+	<defaultCache
+		maxElementsInMemory="10000"
+		eternal="false"
+		timeToIdleSeconds="120"
+		timeToLiveSeconds="120"
+		overflowToDisk="true"
+		maxElementsOnDisk="1000000"
+		diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU"
+		/>
+	-->
+	
+	<!-- =========================================缓存配置,同默认配置============================================= -->
+	<!--cache配置同defaultCache -->
+	 <cache name="testCache"   
+           maxElementsInMemory="1000"   
+           eternal="false"  
+           timeToIdleSeconds="120"  
+           timeToLiveSeconds="120"  
+           overflowToDisk="false"   
+           memoryStoreEvictionPolicy="LRU"/>  
+	
+	
+	
+	<!-- =========================================默认缓存配置,跟上上面的一样============================================= -->
+    <!--
+    Mandatory Default Cache configuration. These settings will be applied to caches
+    created programmtically using CacheManager.add(String cacheName)
+    -->
+    <!--
+       name:缓存名称。
+       maxElementsInMemory：缓存最大个数。
+       eternal:对象是否永久有效，一但设置了，timeout将不起作用。
+       timeToIdleSeconds：设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，
+       			可选属性，默认值是0，也就是可闲置时间无穷大。
+       timeToLiveSeconds：设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。
+       			仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。
+       overflowToDisk：当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中。
+       diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。
+       maxElementsOnDisk：硬盘最大缓存个数。
+       diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the 
+       			Virtual Machine. The default value is false.
+       diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。
+       memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。
+       			默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。
+       clearOnFlush：内存数量最大时是否清除。
+    -->
+    <defaultCache  
+           maxElementsInMemory="1000"  
+           eternal="false"  
+           timeToIdleSeconds="120"  
+           timeToLiveSeconds="120"  
+           overflowToDisk="false"/>  
+
+	
+	<!-- =========================================JSR107(自定义事件监听在写缓存时做自定义操作)============================= -->
+	<!--  
+		别名people,继承自缓存模板heap-cache.监听在缓存做对应的操作的时候出发自定义监听器
+	<service>
+		<jsr107:defaults>
+			<jsr107:cache name="people" template="heap-cache"/> 
+		</jsr107:defaults>
+	</service>
+
+	<cache-template name="heap-cache">
+		<listeners>    
+			<listener>
+				<class>org.terracotta.ehcache.EventLogger</class>
+				<event-firing-mode>ASYNCHRONOUS</event-firing-mode>
+				<event-ordering-mode>UNORDERED</event-ordering-mode>
+				<events-to-fire-on>CREATED</events-to-fire-on> 
+				<events-to-fire-on>UPDATED</events-to-fire-on> 
+				<events-to-fire-on>EXPIRED</events-to-fire-on> 
+				<events-to-fire-on>REMOVED</events-to-fire-on> 
+				<events-to-fire-on>EVICTED</events-to-fire-on> 
+			</listener>
+		</listeners>
+		<resources>
+			<heap unit="entries">2000</heap> 
+			<offheap unit="MB">100</offheap> 
+		</resources>
+	</cache-template>
+	-->
+</ehcache>
+	
+	
+<!-- </config> -->

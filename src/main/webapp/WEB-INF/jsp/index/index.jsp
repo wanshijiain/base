@@ -9,7 +9,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	看首页
+	这才是项目启动的首页
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
