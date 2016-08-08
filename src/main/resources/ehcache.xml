@@ -4,10 +4,6 @@
          updateCheck="true" monitoring="autodetect"
          dynamicConfig="true">
 
-	<!-- <?xml version="1.0" encoding="UTF-8"?>  
-	<ehcache:config
-	    xmlns:ehcache="http://www.ehcache.org/v3"
-	    xmlns:jcache="http://www.ehcache.org/v3/jsr107"> -->
     
 	<!-- =========================================缓存地址配置================================================= -->
 	<!-- 缓存在磁盘中的位置(user.home, user.dir, java.io.tmpdir) -->
@@ -141,6 +137,3 @@
 	</cache-template>
 	-->
 </ehcache>
-	
-	
-<!-- </config> -->

@@ -12,7 +12,6 @@ public interface UserService {
 	/**
 	 * 通过id获取person
 	 * @param id
-	 * @return Person
 	 */
-	Person getById(String id) throws ParseException;
+	Integer getById(String id) throws ParseException;
 }

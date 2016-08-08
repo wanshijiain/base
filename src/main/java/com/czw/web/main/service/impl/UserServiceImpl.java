@@ -1,13 +1,12 @@
 package com.czw.web.main.service.impl;
 
 import java.text.ParseException;
-import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.czw.util.DateUtils;
-import com.czw.web.main.bean.Person;
+import com.czw.web.main.dao.UserDao;
 import com.czw.web.main.service.UserService;
 
 /**
@@ -16,24 +15,14 @@ import com.czw.web.main.service.UserService;
  */
 @Service
 public class UserServiceImpl implements UserService {
-	Person p = new Person();
+
+	@Autowired
+	private UserDao userDao;
+	
 	@Override
-	@Cacheable(value="testCache",key="'get'")
-	public Person getById(String id) throws ParseException {
-		
-		if(id.equals("1")){
-			p.setUserName("张三");
-			p.setDatetime(DateUtils.DateToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
-		}
-		else if(id.equals("2")){
-			p.setUserName("李四");
-			p.setDatetime(DateUtils.DateToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
-		}
-		else{
-			p.setAddress("没有");
-			p.setDatetime(DateUtils.DateToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
-		}
-		return p;
+	@Cacheable(value="testCache",key="#id")
+	public Integer getById(String id) throws ParseException {
+		return userDao.getById("1");
 	}
 	
 	

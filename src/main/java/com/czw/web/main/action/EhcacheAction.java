@@ -24,9 +24,8 @@ public class EhcacheAction {
 	@RequestMapping
 	public String index(Model model,String id){
 		try {
-			Person person = userServiceImpl.getById(id);
-			System.out.println(person.getUserName()+"=,="+person.getDatetime());
-			model.addAttribute("person",person);
+			Integer rdm = userServiceImpl.getById(id);
+			model.addAttribute("rdm",rdm);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

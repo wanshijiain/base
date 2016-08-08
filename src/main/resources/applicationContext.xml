@@ -10,22 +10,6 @@
 
 	<context:component-scan base-package="com.czw.web" />
 	
-	<!-- 缓存配置,这个注解配置要在主spring配置中才生效 -->
-	<cache:annotation-driven cache-manager="cacheManager"/>
-	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:ehcache.xml"/>
-		<!-- 总是报找不到CacheManager的错误,加入这个就没了 -->
-		<property name="shared" value="true"/>
-	</bean>
-	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-		<property name="cacheManager" ref="ehcacheManager"/>
-		<property name="transactionAware" value="true"/>
-	</bean>
-	
-	<!-- 配置一个缓存拦截器对象，处理具体的缓存业务 -->
-	<!-- <bean id="methodCacheInterceptor" class="com. hoo.common.interceptor.MethodCacheInterceptor">
-	    <property name="cache" ref="cacheManager"/>
-	</bean> -->
 </beans>
 
 

@@ -7,10 +7,12 @@
 </head>
 <body>
 	哼哼,首页!	<br/>
-	<span>用户名：</span>
+	<%-- <span>用户名：</span>
 	<span>${person.userName }</span>
 	<br/>
-	<span>时间：</span>
-	<span>${person.datetime }</span>
+	<span>年龄：</span>
+	<span>${person.age }</span> --%>
+	<span>random:</span>
+	<span>${rdm }</span>
 </body>
 </html>
