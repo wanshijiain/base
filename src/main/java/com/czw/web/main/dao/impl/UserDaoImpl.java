@@ -17,6 +17,7 @@ import com.czw.web.main.dao.UserDao;
  */
 @Repository
 public class UserDaoImpl implements UserDao {
+	
 
 	@Override
 	public Integer getById(String id) {
@@ -24,5 +25,6 @@ public class UserDaoImpl implements UserDao {
 		System.out.println("查看缓存是否执行["+id+"]："+rdm+",time="+DateUtils.DateToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
 		return rdm;
 	}
+	
 
 }

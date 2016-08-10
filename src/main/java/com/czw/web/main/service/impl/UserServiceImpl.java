@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
 	public Integer getById(String id) throws ParseException {
 		return userDao.getById("1");
 	}
+
 	
 	
 }

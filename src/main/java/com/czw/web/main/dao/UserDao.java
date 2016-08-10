@@ -7,4 +7,5 @@ package com.czw.web.main.dao;
 public interface UserDao{
 	
 	Integer getById(String id);
+	
 }

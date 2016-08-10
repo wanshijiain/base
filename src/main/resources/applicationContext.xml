@@ -1,15 +1,57 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/data/mongo   
+          http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/context/spring-aop.xsd
         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 	<context:component-scan base-package="com.czw.web" />
-	
+
+	<context:property-placeholder location="classpath:config/mongodb.properties" />
+
+	<!-- Hikari Datasource -->
+	<!-- <bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${mongo.native.driver}" /> 无需指定，除非系统无法自动识别
+		<property name="jdbcUrl" value="${mongo.native.url}" />
+		<property name="username" value="${mongo.native.username}" />
+		<property name="password" value="${mongo.native.password}" />
+		连接只读数据库时配置为true， 保证安全
+		<property name="readOnly" value="false" />
+		等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒
+		<property name="connectionTimeout" value="30000" />
+		一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟
+		<property name="idleTimeout" value="600000" />
+		一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL 
+			wait_timeout参数（show variables like '%timeout%';）
+		<property name="maxLifetime" value="1800000" />
+		连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+		<property name="maximumPoolSize" value="15" />
+	</bean> -->
+
+
+
+
+	<!-- 定义mongo对象，对应的是mongodb官方jar包中的Mongo，replica-set设置集群副本的ip地址和端口 -->
+	<!-- <mongo:mongo id="mongo" replica-set="${mongo.hostport}"> <mongo:options 
+		connections-per-host="${mongo.connectionsPerHost}" threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}" 
+		connect-timeout="${mongo.connectTimeout}" max-wait-time="${mongo.maxWaitTime}" 
+		auto-connect-retry="${mongo.autoConnectRetry}" socket-keep-alive="${mongo.socketKeepAlive}" 
+		socket-timeout="${mongo.socketTimeout}" slave-ok="${mongo.slaveOk}" write-number="1" 
+		write-timeout="0" write-fsync="true" /> </mongo:mongo> <mongo:db-factory 
+		dbname="database" mongo-ref="mongo" /> -->
+	<!-- <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.ReflectiveDbInvoker"> 
+		<constructor-arg ref="mongo" /> <constructor-arg name="databaseName" value="db_mongo" 
+		/> </bean> -->
+
+
+
+
+
 </beans>
 
 
