@@ -1,0 +1,65 @@
+哺乳动物 
+1.狮子(lion)roar, howl; 
+2.老虎(tiger)roar, howl,growl 
+3.豹子(panther)howl 
+4.大象(elephant)trumpet 
+5.豺(jackal)howl 
+6.狼(wolf)howl,growl 
+7.狗(dog)bark,yap,yelp,bay,howl,growl,snarl,whine,bowwow 
+8.猎狗(hound)bay 
+9.小狗(puppy)yelp 
+10.狐(fox)bark 
+11.猫(cat)mew,miaow,miau,meow,meou,purr 
+12.小猫(kitten)mew 
+13.鼠(mouse)squeak,cheep,peep 
+14.猪(pig)grunt, whick, aqueak,squeal 
+15.野猪(swine)grunt 
+16.公猪(boar)girn 
+17.熊(bear)bruzz, growl 
+18.无尾猿(ape)gibber,gueriet 
+19.猴(monkey)screech, gibber, chatter, snutter,jabber, howl,chatter 
+20.骆驼(camel)nuzz, grunt 
+21.鹿(deer)call, bell, bellow 
+22.牛(cattle)cow,bleat,low,bellow 
+23.公牛(bull)bellow,low 
+24.母牛(cow)low,boo,moo 
+25.小牛(calf)bleat 
+26.水牛(buffalo)boo 
+27.山羊(goat)bleat 
+28.绵羊(sheep)baa 
+29.小羊(lamb)bleat,baa 
+30.马(horse)neigh,whinny,nicker 
+31.驴(ass,donkey)bray, hee-haw 
+32.兔子(rabbit)mumble 
+
+卵生动物 
+1.公鸡(cock)crow 
+2.母鸡(hen)cluk,cackle,chuck,chuckle
+3.小鸡(chick)cheep,pip,peep,pule 
+4.火鸡(turkey)gobble 
+5.鸭子(duck)quack 
+6.鹅(goose)cackle,gabble,gaggle 
+7.野鹅(wild goose)honk 
+8.青蛙(frog)croak 
+9.蟾蜍(toad)shriek 
+10.蛇(snake, serpent)hiss 
+11.蜜蜂(bee)buzz,hum,bumble,drone 
+12.黄蜂(wasp)hum 
+13.蟋蟀(cricket)chirp,chirrup 
+14.甲虫(beetle)drone,boom 
+15.蚱蜢(grsshopper)chirp 
+16.蚊子(mosquito)hum,buzz,drone 
+17.苍蝇(fly)hum,buzz,drone 
+18.知了(cikada)chirp,chirrup 
+19.鸽子(pigeon,dove)coo 
+20.杜鹃(cuckoo)cuckoo 
+21.夜莺(nightingale)jug,jugjug 
+22.田凫(peewit)pu-we 
+23.猫头鹰(owl)to-witta-woo
+24.喜鹊(magpie)chatter 
+25.鹦鹉(parrot)squawk 
+26.麻雀(sparrow)twittler,chirp,chirrup 
+27.云雀(lark)warble
+
+
+

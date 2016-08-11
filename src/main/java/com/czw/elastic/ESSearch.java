@@ -44,13 +44,13 @@ public class ESSearch {
 	public void searchTest() {
 		start();
 		Map<String, String> query = new HashMap<>();
-		query.put("name", "南区");
+		query.put("name", "香蕉");
 
-		QueryBuilder query1 = QueryBuilders.commonTermsQuery("name", "南区");
+		QueryBuilder query1 = QueryBuilders.commonTermsQuery("name", "香蕉");
 
-		QueryBuilder query2 = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("name", "南区"));
+		QueryBuilder query2 = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("name", "香蕉"));
 
-		SearchResponse response2 = client.prepareSearch("county").setTypes("name").setQuery(query2).execute().actionGet(100);
+		SearchResponse response2 = client.prepareSearch("goods").setTypes("info").setQuery(query2).execute().actionGet(100);
 		System.out.println("TotalHits:" + response2.getHits().getTotalHits());
 		SearchHit[] shs = response2.getHits().getHits();
 		for (SearchHit sh : shs) {

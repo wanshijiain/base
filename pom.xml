@@ -244,6 +244,13 @@
 			<version>1.9.2.RELEASE</version>
 		</dependency>
 
+		<!-- 文本字符集检测 -->
+		<dependency>
+			<groupId>net.sourceforge.jchardet</groupId>
+			<artifactId>jchardet</artifactId>
+			<version>1.0</version>
+		</dependency>
+
 
 	</dependencies>
 	<!-- 自动下载elasticsearch包时总是missing包，配置JDK版本后就好了 -->
