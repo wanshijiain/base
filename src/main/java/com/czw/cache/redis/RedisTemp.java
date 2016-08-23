@@ -1,22 +1,18 @@
 package com.czw.cache.redis;
 
-import java.net.URL;
-import java.util.Map;
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.StringRedisConnection;
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.hash.HashMapper;
 import org.springframework.stereotype.Component;
 
-import com.czw.beans.User;
+import redis.clients.jedis.Jedis;
 
 /**
  * @author ZeviChen
@@ -24,25 +20,33 @@ import com.czw.beans.User;
  */
 @Component
 public class RedisTemp {
+	
+	@Autowired
+	private Jedis jedis;
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 
 	/**
 	 * 将redisTemplcate注入对应的类型操作类中. 注解的注入方式,另外有配置文件的配置方式
 	 */
-	@Autowired
-	@Qualifier("redisTemplate")
+//	@Autowired
+//	@Qualifier("redisTemplate")
+	@Resource(name="redisTemplate")
 	private ListOperations<String, String> listOps;
 
 	@Autowired
 	private StringRedisTemplate strTemplate;
 
-	public void addLinkByListTmp(String userId, URL url) {
-		listOps.leftPush(userId, url.toExternalForm());
+	public void addByListTmp(String userId, String data) {
+		listOps.leftPush(userId, data);
 	}
 
-	public void addLinkByStrTmp(String userId, URL url) {
-		strTemplate.opsForList().leftPush(userId, url.toExternalForm());
+	public void addByStrTmp(String userId, String data) {
+		strTemplate.opsForList().leftPush(userId, data);
+	}
+	public String getForStrTmp(String userId){
+//		return strTemplate.opsForList().set(arg0, arg1, arg2);
+		return null;
 	}
 
 	/**
@@ -62,8 +66,13 @@ public class RedisTemp {
 			}
 		});
 	}
-/*
-	@Autowired
+	
+	public void pingJedis(){
+		System.out.println("ping rst:"+jedis.ping());
+	}
+	
+	
+	/*@Autowired
 	@Qualifier("redisTemplcate")
 	HashOperations<String, byte[], byte[]> hashOperations;
 	HashMapper<Object, byte[], byte[]> mapper = new ObjectHashMapper();

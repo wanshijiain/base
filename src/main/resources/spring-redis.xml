@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/context/spring-aop.xsd
         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-	<!-- <context:component-scan base-package="com.czw.cache.redis" /> -->
+	<context:component-scan base-package="com.czw.cache.redis" />
 
 	<context:property-placeholder
 		file-encoding="UTF-8" ignore-unresolvable="true" location="redis.properties" />

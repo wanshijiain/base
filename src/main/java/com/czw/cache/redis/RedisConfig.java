@@ -21,7 +21,7 @@ import redis.clients.jedis.Jedis;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan
-@ImportResource("spring-redis.xml")
+@ImportResource("classpath:spring-redis.xml")
 public class RedisConfig {
 	
 	private String host = "192.168.229.128";
