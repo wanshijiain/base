@@ -2,12 +2,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:redis="http://www.springframework.org/schema/redis"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/data/mongo   
         http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/context/spring-aop.xsd
-        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/redis http://www.springframework.org/schema/redis/spring-redis.xsd">
 
 	<context:component-scan base-package="com.czw.cache.redis" />
 
@@ -22,10 +24,39 @@
 	<!-- redis template definition -->
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
 		p:connection-factory-ref="jedisConnectionFactory" />
-	
+
 	<!-- redis string operations -->
 	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
 		p:connection-factory-ref="jedisConnectionFactory" />
+
+	<!-- the method attribute can be skipped as the default method name is "handleMessage" -->
+	<redis:listener-container>
+		<redis:listener ref="listener" method="handleMessage"
+			topic="chatroom" />
+	</redis:listener-container>
+
+	<bean id="listener" class="redisexample.DefaultMessageDelegate" />
+
+	<bean id="messageListener"
+		class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+		<constructor-arg>
+			<bean class="redisexample.DefaultMessageDelegate" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="redisContainer"
+		class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="messageListeners">
+			<map>
+				<entry key-ref="messageListener">
+					<bean class="org.springframework.data.redis.listener.ChannelTopic">
+						<constructor-arg value="chatroom"/>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
 
 </beans>
 

@@ -1,16 +1,27 @@
 package com.czw.cache.redis;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.StringRedisConnection;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.hash.BeanUtilsHashMapper;
+import org.springframework.data.redis.hash.HashMapper;
 import org.springframework.stereotype.Component;
+
+import com.czw.beans.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import redis.clients.jedis.Jedis;
 
@@ -72,18 +83,36 @@ public class RedisTemp {
 	}
 	
 	
-	/*@Autowired
-	@Qualifier("redisTemplcate")
-	HashOperations<String, byte[], byte[]> hashOperations;
-	HashMapper<Object, byte[], byte[]> mapper = new ObjectHashMapper();
-
+	@Resource(name="redisTemplate")
+	HashOperations<String, String, String> hashOperations;
+	HashMapper<Object, String, String> mapper = new BeanUtilsHashMapper<Object>(null);
+	
 	public void writeHash(String key, User user) {
-		Map<byte[], byte[]> mappedHash = mapper.toHash(user);
+		Map<String, String> mappedHash = mapper.toHash(user);
 		hashOperations.putAll(key, mappedHash);
 	}
 
 	public User loadHash(String key) {
-		Map<byte[], byte[]> loadedHash = hashOperations.entries("key");
+		Map<String, String> loadedHash = hashOperations.entries("key");
 		return (User) mapper.fromHash(loadedHash);
-	}*/
+	}
+	
+	
+	/**
+	 * execute a transaction
+	 * @see http://docs.spring.io/spring-data/redis/docs/1.8.0.M1/reference/html/#tx.spring
+	 */
+	@SuppressWarnings({"unchecked","rawtypes"})
+	public void txByredisTmp(){
+		List<Object> txResults = redisTemplate.execute(new SessionCallback<List<Object>>() {
+			public List<Object> execute(RedisOperations operations) throws DataAccessException {
+				operations.multi();
+				operations.opsForSet().add("key", "value1");
+				
+				// This will contain the results of all ops in the transaction
+				return operations.exec();
+			}
+		});
+		System.out.println("Number of items added to set: " + txResults.get(0));
+	}
 }
