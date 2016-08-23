@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/data/mongo   
+        http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/context/spring-aop.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<!-- <context:component-scan base-package="com.czw.cache.redis" /> -->
+
+	<context:property-placeholder
+		file-encoding="UTF-8" ignore-unresolvable="true" location="redis.properties" />
+
+	<!-- Jedis ConnectionFactory -->
+	<bean id="jedisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		p:host-name="${redis.host}" p:port="${redis.port}" p:use-pool="true" />
+
+	<!-- redis template definition -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="jedisConnectionFactory" />
+	
+	<!-- redis string operations -->
+	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+		p:connection-factory-ref="jedisConnectionFactory" />
+
+</beans>
+
+
+
+
+
+
+
+

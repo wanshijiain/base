@@ -9,7 +9,8 @@ import redis.clients.jedis.Jedis;
 public class RedisUtils {
 	
 	private static Jedis jedis;
-	private static String url = "192.168.229.128";
+//	private static String url = "192.168.229.128";
+	private static String url = "127.0.0.1";
 	private static int port = 6379;
 	
 	public static Jedis init(){

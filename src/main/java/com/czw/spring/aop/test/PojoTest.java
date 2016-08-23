@@ -20,9 +20,7 @@ import com.czw.spring.aop.config.SystemConfig;
  * 
  * @author Zevi Chan
  * @date 2016年6月21日 下午5:10:12 
- * 
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={SystemConfig.class})
 @TestExecutionListeners(listeners = {DependencyInjectionTestExecutionListener.class})
