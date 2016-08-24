@@ -10,8 +10,7 @@ public class JunitJedis extends BasicRedis {
 	
 	@Test
 	public void test(){
-		
-		
+		ping();
 		
 	}
 	

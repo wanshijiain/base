@@ -31,9 +31,13 @@ public class RedisConfig {
 	 * @return
 	 */
 	@Bean
-	public Jedis getJredis(){
-		return RedisUtils.init();
+	public Jedis getJedis(){
+		Jedis jedis  = RedisUtils.getResource();
+//		Jedis jedis = RedisUtils.init();
+		jedis.auth("123456");
+		return jedis;
 	}
+	
 	
 	/**
 	 * Jedis Sentinel cofig
