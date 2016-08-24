@@ -2,3 +2,4 @@ eclipse.preferences.version=1
 encoding//src/main/java/com/czw/jichu/jdbc/dao/impl/UserDaoJdbcImpl.java=UTF-8
 encoding//src/main/java/com/czw/jichu/jdbc/datasource/MyConnection.java=UTF-8
 encoding//src/main/resources/config/mongodb.properties=UTF-8
+encoding//src/main/resources/redis.properties=UTF-8

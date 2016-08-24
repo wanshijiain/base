@@ -32,7 +32,7 @@ public class RedisConfig {
 	 * my config
 	 * @return
 	 */
-	@Bean(name="jedis")
+	@Bean
 	public Jedis getJredis(){
 		return RedisUtils.init();
 	}

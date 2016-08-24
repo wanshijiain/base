@@ -11,7 +11,7 @@ import redis.clients.jedis.Jedis;
  * @author ZeviChen
  * @Date 2016-08-09 12:51:25
  */
-public class RedisType {
+public class JedisPing {
 	private Jedis jedis;
 	
 	@Before
