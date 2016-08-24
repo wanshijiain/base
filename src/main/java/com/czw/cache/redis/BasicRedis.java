@@ -22,7 +22,7 @@ public class BasicRedis {
 	
 	protected static Logger log = LoggerFactory.getLogger(BasicRedis.class);
 	@Autowired
-	private Jedis jedis;
+	protected Jedis jedis;
 	
 	protected void ping() {
 		log.info(jedis.ping());
