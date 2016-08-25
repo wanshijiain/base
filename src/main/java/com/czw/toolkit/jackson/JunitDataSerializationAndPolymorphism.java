@@ -52,6 +52,7 @@ public class JunitDataSerializationAndPolymorphism {
 	@Test
 //	@Ignore
 	public void serializeExp() throws JsonGenerationException, JsonMappingException, IOException{
+		
         Zoo zoo = new Zoo("Samba Wild Park", "Paz");
         Lion lion = new Lion("Simba");
         Elephant elephant = new Elephant("Manny");
