@@ -2,7 +2,6 @@ package com.czw.toolkit.jackson;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class JunitDataSerializationAndPolymorphism {
 	@Test
 	@Ignore
 	public void test() throws IOException{
-		File f = new File(ComUtils.setFilePath(this.getClass(),"com.czw.toolkit.jackson", outputFile,true));
+		File f = new File(ComUtils.setFilePath(this.getClass(),"com.czw", outputFile,true));
 		FileWriter fw = new FileWriter(f);
 		fw.write("{}");
 		fw.close();
@@ -47,11 +46,11 @@ public class JunitDataSerializationAndPolymorphism {
 		while((line = br.readLine()) != null){
 			System.out.println(line);
 		}
-		
 		br.close();
 	}
 	
 	@Test
+//	@Ignore
 	public void serializeExp() throws JsonGenerationException, JsonMappingException, IOException{
         Zoo zoo = new Zoo("Samba Wild Park", "Paz");
         Lion lion = new Lion("Simba");
