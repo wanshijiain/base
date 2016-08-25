@@ -1,0 +1,18 @@
+{
+  "@class" : ".Zoo",
+  "name" : "Samba Wild Park",
+  "city" : "Paz",
+  "animals" : [ {
+    "@class" : "com.czw.toolkit.jackson.entity.Lion",
+    "name" : "Simba",
+    "sound" : "Roar",
+    "type" : "carnivorous",
+    "endangered" : true
+  }, {
+    "@class" : "com.czw.toolkit.jackson.entity.Elephant",
+    "name" : "Manny",
+    "sound" : "trumpet",
+    "type" : "herbivorous",
+    "endangered" : false
+  } ]
+}

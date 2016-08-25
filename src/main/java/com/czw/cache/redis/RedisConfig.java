@@ -9,8 +9,6 @@ import org.springframework.context.annotation.ImportResource;
 import com.czw.util.RedisUtils;
 
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * @author ZeviChen

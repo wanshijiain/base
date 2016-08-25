@@ -24,8 +24,10 @@ public class JunitStringOperations extends BasicRedis {
 	
 	@Test
 	public void stringTest() throws MalformedURLException{
-		String name = valueRdsTmp.get("name");
-		System.out.println("name = "+name);
+		valueRdsTmp.set("100", "杭州");
+		
+		String addr = valueRdsTmp.get("100");
+		System.out.println("addr = "+addr);
 	}
 	
 }

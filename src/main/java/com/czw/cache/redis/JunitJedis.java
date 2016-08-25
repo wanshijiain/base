@@ -10,7 +10,8 @@ public class JunitJedis extends BasicRedis {
 	
 	@Test
 	public void test(){
-		ping();
+		//ping();
+		System.out.println(jedis.get("a"));
 		
 	}
 	
