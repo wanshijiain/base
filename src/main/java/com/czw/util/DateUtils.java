@@ -9,7 +9,7 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * @author Zevi Chan
+ * @author ZeviChen
  * @Date 2016-07-20 14:45:02
  */
 public class DateUtils {

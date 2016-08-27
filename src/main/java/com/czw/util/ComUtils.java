@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Zevi Chan
+ * @author ZeviChen
  * @Date 2016-08-02 15:38:17
  */
 public class ComUtils {
@@ -113,8 +113,87 @@ public class ComUtils {
 		return filePath;
 	}
 
-	public static void main(String[] args) {
-		getProjectPath(ComUtils.class);
+	
+	//打印分割线
+	//开始分割线printStartLine
+	public static void ps(String title){
+		String sepTitle = "======================"+title+"--start======================";
+		System.out.println(calt(sepTitle));
 	}
+	//结束分割线printEndLine
+	public static void pe(String title){
+		String sepTitle = "======================"+title+"--end========================";
+		System.out.println(calt(sepTitle));
+	}
+	
+	private static String app = "=";
+	private static int size = 60;
+	private static StringBuilder sbLine = new StringBuilder();
+	private static String calt(String line){
+		sbLine.setLength(0);
+		sbLine.append(line);
+		int delta = size -line.length();
+		System.out.println("差值是："+delta);
+		int absValue = Math.abs(delta);
+		
+		System.out.println("绝对值："+absValue);
+		boolean isEven = absValue%2==0?true:false;
+		int a,b;
+		if(isEven){
+			a = absValue/2;
+			b = a;
+		}
+		else{
+			a = absValue/2;
+			b = a+1;
+		}
+		System.out.println("a和b的值："+a+","+b);
+		if(delta < 0){
+			if(isEven){
+				line = sbLine.substring(a, sbLine.length()-a);
+			}
+			else{
+				line = sbLine.substring(a, sbLine.length()-a-1);
+			}
+		}
+		else if(delta > 0){
+			if(isEven){
+				String ap = loopStr(app,a);
+				System.out.println("ap值："+ap);
+				sbLine.insert(0, ap);
+				line = sbLine.append(ap).toString();
+			}else{
+				String ap = loopStr(app,a);
+				String bp = loopStr(app,b);
+				System.out.println("ap值："+ap);
+				System.out.println("ap值："+bp);
+				sbLine.insert(0, ap);
+				line = sbLine.append(bp).toString();
+			}
+		}
+		System.out.println("结果的长度: "+line.length());
+		return line;
+	}
+	private static StringBuilder sb = new StringBuilder();
+	private static String loopStr(String s,int num){
+		sb.setLength(0);
+		while(num>0){
+			sb.append(s);
+			num--;
+		}
+		return sb.toString();
+	}
+	
+	
+	
+	public static void main(String[] args) {
+////		getProjectPath(ComUtils.class);
+//		String title = "今天天气真好";
+//		String l = "======================="+title+"--start=======================";
+//		System.out.println(l.length());
+		System.out.println("======================创建Present实例--start======================".length());
+		System.out.println("======================fewfew--end========================".length());
+	}
+	
 
 }
