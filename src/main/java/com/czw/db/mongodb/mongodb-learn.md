@@ -86,7 +86,7 @@
 		
 	
 	
-	1.增删改查：
+	##1.增删改查：
 		db.dbname.insert({"name":"mongodb"})	//插入数据
 		db.dropDatabase()						//删除数据库
 		
@@ -108,7 +108,7 @@
 		
 		db.user.find({random:{$eq:7}},{"age":1,"name":1,"_id":0})		//默认返回_id,可以设置返回特定字段
 	
-	2.比较：
+	##2.比较：
 		操作					格式								范例							RDBMS中的类似语句
 		
 		等于			{<key>:<value>}			db.col.find({"by":"菜鸟教程"}).pretty()		where by = '菜鸟教程'
@@ -132,16 +132,16 @@
 		sort({"likes":-1})		// 1 升序 -1降序
 	
 	
-	3.创建索引：
+	##3.创建索引：
 		
 		db.values.ensureIndex({open: 1, close: 1}, {background: true})	//创建索引会阻塞数据库，background在后台建     1   升序   -1  降序
 		
-	4.聚合的使用（就是数据库的分组概念）
+	##4.聚合的使用（就是数据库的分组概念）
 		【select by_user,count(*) tongji from person group by by_user】
 		db.mycol.aggregate([{$group : {_id : "$by_user", tongji : {$sum : 1}}}])
 	
 	
-	5.管道(linux中的概念：上个命令执行的结果可以作为下一个命令的参数):
+	##5.管道(linux中的概念：上个命令执行的结果可以作为下一个命令的参数):
 		
 		db.article.aggregate({ 
 			$project : {
@@ -160,7 +160,7 @@
 	    { $skip : 5 });
 		说明：经过$skip管道操作符处理后，前五个文档被"过滤"掉。
 		
-	6.复制(副本集)
+	##6.复制(副本集)
 		
 		创建master:mongod --port 27017 --dbpath "D:\set up\mongodb\data" --replSet rs0
 		
@@ -168,25 +168,25 @@
 		
 		复制:rs.add(HOST_NAME:PORT)		//rs.add("mongod1.net:27017")	
 		
-	7.分片(分布式存储)
+	##7.分片(分布式存储)
 		说明：一个副本集可以建12个节点,这种分布式结构有nginx,mongodb,分布存储服务器组成
 		
 		具体操作地址：http://www.runoob.com/mongodb/mongodb-sharding.html
 	
-	8.备份
+	##8.备份
 		mongodump -h dbhost -d dbname -o dbdirectory		//备份
 		
 		
 		mongorestore -h dbhost -d dbname --directoryperdb dbdirectory		
 		mongorestore		//恢复
 	
-	9.监控
+	##9.监控
 	
 		mongostat		//mongo自带的检测命令，当数据库变慢等查看
 		mongotop		//自带工具
 	
 	
-	10.关系
+	##10.关系
 	
 		现在版本的mongodb加入了join【再看】
 	
@@ -195,7 +195,7 @@
 			var addresses = db.address.find({"_id":{"$in":result["address_ids"]}})
 	
 	
-	11.引用
+	##11.引用
 		
 		数据库引用和手动引用：
 			
@@ -217,7 +217,7 @@
 			var dbRef = user.address
 			db[dbRef.$ref].findOne({"_id":(dbRef.$id)})
 	
-	12.覆盖索引查询
+	##12.覆盖索引查询
 	
 		就是建立索引字段，查询和返回的字段都是索引中的，索引存在于ram中，所以速度会快很多。
 		
@@ -225,7 +225,7 @@
 		hint()			虽然mongodb有覆盖索引的优化，但可以使用该方法来强制使用指定索引
 	
 	
-	13.ObjectId()
+	##13.ObjectId()
 		
 		ObjectId 是一个12字节 BSON 类型数据，有以下格式：
 			前4个字节表示时间戳
@@ -240,7 +240,7 @@
 		new ObjectId().str				//5349b4ddd2781d08c09890f3	(Guid格式的字符串)
 	
 	
-	14.MapReduce
+	##14.MapReduce
 		
 		//通过一些参数计算对结果分组，list
 		var map = function() {
@@ -269,7 +269,7 @@
 		db.book_results.find()
 	
 	
-	15.全文索引
+	##15.全文索引
 		
 		暂不支持中文
 		
@@ -278,7 +278,7 @@
 		db.posts.dropIndex("post_text_text")						//删除全文索引
 	
 	
-	16.正则表达式
+	##16.正则表达式
 	
 		db.posts.find({post_text:{$regex:"w3cschool.cc"}})
 		db.posts.find({post_text:/w3cschool.cc/})			//这两种写法都可以
@@ -291,7 +291,7 @@
 		//可以使用^   $   口头或结尾查找
 		
 	
-	17.GridFS
+	##17.GridFS
 		
 		存储音视频的大的文件(超过BSON 16M限制的文件),用两个文档来存储一个文件,file文档存储文件信息,
 			chunk文档存储讲文件分块成256k/个的片段来进行存储
@@ -301,7 +301,7 @@
 		db.fs.chunks.find({files_id:ObjectId('534a811bf8b4aa4d33fdf94d')})		//通过find的_id找到文件的chunks
 	
 	
-	18.固定集合(Capped Collections)
+	##18.固定集合(Capped Collections)
 		
 		集合大小固定，当存储满了以后，插入新的数据会淘汰最早的数据
 		
@@ -322,7 +322,7 @@
 			在32位机子上一个cappped collection的最大值约为482.5M,64位上只受系统文件大小的限制。
 		
 	
-	19.自增
+	##19.自增
 		
 		
 		
@@ -330,7 +330,7 @@
 		
 		
 		
-	20.原子操作
+	##20.原子操作
 		
 		mongodb不支持事务，但文档的增删改都是原子操作，要么完成操作要么不操作
 		
@@ -358,7 +358,7 @@
 		$bit		//位操作，integer类型
 			{$bit : { field : {and : 5}}}  //and 与运算
 	
-	21.游标
+	##21.游标
 		
 		说明：游标默认超过10分钟就关闭
 		
