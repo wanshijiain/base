@@ -32,6 +32,7 @@ public class ESUtils {
 	
 	private static String IP1 = "192.168.1.113";
 	private static String IP2 = "192.168.229.128";
+	private static String IP3 = "192.168.124.128";
 	
 	public static void initSettings(){
 		settings = Settings.settingsBuilder().put("cluster.name", Constants.ES_CLUSTER_NAME.getValue())
@@ -42,7 +43,7 @@ public class ESUtils {
 		initSettings();
 		try {
 			client = TransportClient.builder().settings(settings).build()
-					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(IP2),9300));
+					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(IP3),9300));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}

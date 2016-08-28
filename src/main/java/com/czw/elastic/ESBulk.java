@@ -111,7 +111,7 @@ public class ESBulk {
 	@Test
 	public void bulkBatchImport() {
 		IndexTypeBean itb = new IndexTypeBean("goods","info","d:\\tmp\\goods_info.dat");
-//		IndexTypeBean itb = new IndexTypeBean("operate","log","d:\\tmp\\admin_op_log.dat");		数据太大需要优化
+//		IndexTypeBean itb = new IndexTypeBean("operate","log","d:\\tmp\\admin_op_log.dat");		//数据太大需要优化
 //		IndexTypeBean itb = new IndexTypeBean("bill","record","d:\\tmp\\bill_record_info.dat");
 //		IndexTypeBean itb = new IndexTypeBean("city","name","d:\\tmp\\city.dat");
 //		IndexTypeBean itb = new IndexTypeBean("county","name","d:\\tmp\\county.dat");
