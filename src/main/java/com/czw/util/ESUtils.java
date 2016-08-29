@@ -43,7 +43,7 @@ public class ESUtils {
 		initSettings();
 		try {
 			client = TransportClient.builder().settings(settings).build()
-					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(IP3),9300));
+					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(IP2),9300));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}

@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.czw.util.ESUtils;
 
 /**
- * @author Zevi Chan
+ * @author ZeviChen
  * @Date 2016-07-26 14:05:36
  */
 public class ESClient {

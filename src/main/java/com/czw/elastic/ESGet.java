@@ -28,7 +28,7 @@ import com.czw.util.ESUtils;
 public class ESGet {
 
 	@Test
-	// @Ignore
+	 @Ignore
 	public void getTest() {
 		
 		Client client = initClient();
@@ -45,10 +45,11 @@ public class ESGet {
 	 * 多index请求
 	 */
 	@Test
-	@Ignore
+//	@Ignore
 	public void mutiGetTest() {
 		Client client = initClient();
-		MultiGetResponse multiGetItemResponses = client.prepareMultiGet().add("megacorp", "employee", "1")
+		ComUtils.start();
+		MultiGetResponse multiGetItemResponses = client.prepareMultiGet().add("people", "user", "1")
 				.add("goods", "info", "20", "30").add("people", "person", "1").get();
 
 		for (MultiGetItemResponse itemResponse : multiGetItemResponses) {

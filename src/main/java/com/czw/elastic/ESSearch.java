@@ -1,7 +1,8 @@
 package com.czw.elastic;
 
+import static com.czw.util.ComUtils.start;
 import static com.czw.util.ESUtils.initClient;
-import static com.czw.util.ComUtils.*;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,12 +16,15 @@ import org.elasticsearch.client.Client;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
 import org.elasticsearch.search.aggregations.bucket.histogram.InternalDateHistogram;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.MetricsAggregationBuilder;
+import org.elasticsearch.search.sort.SortOrder;
+import org.elasticsearch.search.sort.SortParseElement;
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -34,25 +38,31 @@ import com.czw.util.ESUtils;
  * Thread Mode: 1.NO_THREADS 当前线程执行 2.SINGLE_THREAD 另起一个线程执行所有分片
  * 3.THREAD_PER_SHARD 每个分片起个线程执行操作
  * 
+ * 
+ * 
  * @author ZeviChen
  * @Date 2016-07-27 15:07:11
  */
 public class ESSearch {
 	private Client client = initClient();
 
+	/**
+	 * 导入的各种包很多，碰到过jackson版本不兼容
+	 */
 	@Test
+	@Ignore
 	public void searchTest() {
 		start();
 		Map<String, String> query = new HashMap<>();
-		query.put("name", "香蕉");
+		query.put("goodsContext", "香蕉");
 
-		QueryBuilder query1 = QueryBuilders.commonTermsQuery("name", "香蕉");
+		QueryBuilder query1 = QueryBuilders.commonTermsQuery("goodsContext", "香蕉");
 
-		QueryBuilder query2 = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("name", "香蕉"));
+		QueryBuilder query2 = QueryBuilders.termQuery("goodsContext", "香蕉");
 
-		SearchResponse response2 = client.prepareSearch("goods").setTypes("info").setQuery(query2).execute().actionGet(100);
-		System.out.println("TotalHits:" + response2.getHits().getTotalHits());
-		SearchHit[] shs = response2.getHits().getHits();
+		SearchResponse response = client.prepareSearch("goods").setTypes("info").setQuery(query1).execute().actionGet();
+		System.out.println("TotalHits:" + response.getHits().getTotalHits());
+		SearchHit[] shs = response.getHits().getHits();
 		for (SearchHit sh : shs) {
 			System.out.println(sh.sourceAsString());
 		}
@@ -72,6 +82,24 @@ public class ESSearch {
 		 * Filter // .setFrom(0).setSize(60).setExplain(true)
 		 * .execute().actionGet(); printResponse(response);
 		 */
+
+	}
+
+	/**
+	 * from .. to .. setSize .. filter ..
+	 */
+	@Test
+	@Ignore
+	public void searchTest3() {
+		SearchResponse response = client.prepareSearch("goods", "people").setTypes("info", "user")
+				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).setQuery(QueryBuilders.termQuery("goodsContext", "地域性")) // Query
+				.setPostFilter(QueryBuilders.rangeQuery("initNum").from(500).to(1500)) // Filter
+				.setFrom(0).setSize(100).setExplain(true).execute().actionGet();
+		System.out.println("TotalHits:" + response.getHits().getTotalHits());
+		SearchHit[] shs = response.getHits().getHits();
+		for (SearchHit sh : shs) {
+			System.out.println(sh.sourceAsString());
+		}
 
 	}
 
@@ -99,57 +127,26 @@ public class ESSearch {
 	@Ignore
 	public void scrollTest() {
 		ComUtils.start();
-		QueryBuilder qb = QueryBuilders.termQuery("goodsName", "山东");
-		/*
-		 * SearchResponse scrollResp = client.prepareSearch("goods")
-		 * .addSort(SortParseElement.DOC_FIELD_NAME,
-		 * SortOrder.ASC).setScroll(new TimeValue(60000)).setQuery(qb)
-		 * .setSize(100).execute().actionGet();
-		 */
-		SearchResponse scrollResp = client.prepareSearch("goods").setSearchType(SearchType.DEFAULT)
-				.setScroll(new TimeValue(60000)).setQuery(qb).setSize(100).execute().actionGet();
-		// 100
-		// hits
-		// per
-		// shard
-		// will
-		// be
-		// returned
-		// for
-		// each
-		// scroll
-		// Scroll until no hits are returned
+		QueryBuilder qb = QueryBuilders.termQuery("multi", "test");
 
-		// 保存查询快照100m时间
-		// 100 hits per shard will be returned for each scroll
-		// Scroll until no hits are returned
-		/*
-		 * while (true) {
-		 * 
-		 * for (SearchHit hit : scrollResp.getHits().getHits()) { // Handle the
-		 * hit... System.out.println(hit.getSourceAsString()); } scrollResp =
-		 * client.prepareSearchScroll(scrollResp.getScrollId()).setScroll(new
-		 * TimeValue(60000)).execute() .actionGet(); // Break condition: No hits
-		 * are returned if (scrollResp.getHits().getHits().length == 0) { break;
-		 * } }
-		 */
-		System.out.println("开始循环");
+		SearchResponse scrollResp = client.prepareSearch("goods")
+				.addSort(SortParseElement.DOC_FIELD_NAME, SortOrder.ASC).setScroll(new TimeValue(60000)).setQuery(qb)
+				.setSize(100).execute().actionGet();
+		// 100 hits per shard will
+		// be returned for each
+		// scroll
 		while (true) {
-			scrollResp = client.prepareSearchScroll(scrollResp.getScrollId()).setScroll(new TimeValue(600000)).execute()
-					.actionGet();
-			for (SearchHit hit : scrollResp.getHits()) {
-				Iterator<Entry<String, Object>> rpItor = hit.getSource().entrySet().iterator();
-				while (rpItor.hasNext()) {
-					Entry<String, Object> rpEnt = rpItor.next();
-					System.out.println(rpEnt.getKey() + " : " + rpEnt.getValue());
-				}
+
+			for (SearchHit hit : scrollResp.getHits().getHits()) {
+				// Handle the hit...
 			}
+			scrollResp = client.prepareSearchScroll(scrollResp.getScrollId()).setScroll(new TimeValue(60000)).execute()
+					.actionGet();
 			// Break condition: No hits are returned
-			if (scrollResp.getHits().hits().length == 0) {
+			if (scrollResp.getHits().getHits().length == 0) {
 				break;
 			}
 		}
-		System.out.println("结束循环");
 
 	}
 

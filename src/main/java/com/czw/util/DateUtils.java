@@ -25,7 +25,7 @@ public class DateUtils {
 	 * @param pattern
 	 *            转换格式 例：yyyy-MM-dd
 	 */
-	public static String DateToString(Date date, String pattern) {
+	public static String dts(Date date, String pattern) {
 		String strDateTime = null;
 		SimpleDateFormat formater = new SimpleDateFormat(pattern);
 		strDateTime = date == null ? null : formater.format(date);
@@ -39,9 +39,9 @@ public class DateUtils {
 	 *            日期对象
 	 * @return String
 	 */
-	public static String DateToString(Date date) {
+	public static String dts(Date date) {
 		String _pattern = "yyyy-MM-dd";
-		return date == null ? null : DateToString(date, _pattern);
+		return date == null ? null : dts(date, _pattern);
 	}
 
 	/**
@@ -51,9 +51,9 @@ public class DateUtils {
 	 *            日期对象
 	 * @return String
 	 */
-	public static String DateTimeToString(Date date) {
+	public static String dtts(Date date) {
 		String _pattern = "yyyy-MM-dd HH:mm:ss";
-		return date == null ? null : DateToString(date, _pattern);
+		return date == null ? null : dts(date, _pattern);
 	}
 
 	/**
@@ -61,8 +61,8 @@ public class DateUtils {
 	 * 
 	 * @param date
 	 */
-	public static String DateToStringWithoutChar(Date date) {
-		String filename = DateUtils.DateTimeToString(new Date());
+	public static String dtsWithoutChar(Date date) {
+		String filename = DateUtils.dtts(new Date());
 		filename = StringUtils.replace(filename, " ", "");
 		filename = StringUtils.replace(filename, ":", "");
 		filename = StringUtils.replace(filename, "-", "");
@@ -78,7 +78,7 @@ public class DateUtils {
 	 *            格式
 	 * @return Date
 	 */
-	public static Date StringToDate(String str, String pattern) {
+	public static Date std(String str, String pattern) {
 		Date dateTime = null;
 		try {
 			if (str != null && !str.equals("")) {
@@ -97,9 +97,9 @@ public class DateUtils {
 	 *            需要转换的字符串
 	 * @return Date 返回值
 	 */
-	public static Date StringToDate(String str) {
+	public static Date std(String str) {
 		String _pattern = "yyyy-MM-dd";
-		return StringToDate(str, _pattern);
+		return std(str, _pattern);
 	}
 
 	/**
@@ -109,9 +109,9 @@ public class DateUtils {
 	 *            需要转换的字符串
 	 * @return Date
 	 */
-	public static Date StringToDateTime(String str) {
+	public static Date stdt(String str) {
 		String _pattern = "yyyy-MM-dd HH:mm:ss";
-		return StringToDate(str, _pattern);
+		return std(str, _pattern);
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class DateUtils {
 	 * @throws Exception
 	 *             Timestamp
 	 */
-	public static Timestamp StringToDateHMS(String str) throws Exception {
+	public static Timestamp stdHMS(String str) throws Exception {
 		time = Timestamp.valueOf(str);
 		return time;
 	}
@@ -226,7 +226,7 @@ public class DateUtils {
 	public static int DateDiff(String date1, String date2) {
 		if (date1 == null || date2 == null)
 			throw new NullPointerException("给定的时间串为null");
-		return Math.abs(DateDiff(StringToDateTime(date1), StringToDateTime(date2))) + 1;
+		return Math.abs(DateDiff(stdt(date1), stdt(date2))) + 1;
 	}
 
 	/**
@@ -238,7 +238,7 @@ public class DateUtils {
 	public static int DateDiff(String date) throws Exception {
 		if (date == null)
 			throw new NullPointerException("给定的时间串为null");
-		return Math.abs(DateDiff(new Date(), StringToDateTime(date))) + 1;
+		return Math.abs(DateDiff(new Date(), stdt(date))) + 1;
 	}
 
 	public static boolean compare_date(String DATE1, Date DATE2) {
@@ -269,9 +269,9 @@ public class DateUtils {
 	 * @return
 	 */
 	public static String getTimeAddMinute(String time, int minute) {
-		ca.setTime(StringToDateTime(time));
+		ca.setTime(stdt(time));
 		ca.add(Calendar.MINUTE, minute);
-		return DateTimeToString(ca.getTime());
+		return dtts(ca.getTime());
 	}
 
 	/**

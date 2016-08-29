@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Integer getById(String id) {
 		Integer rdm = new Random().nextInt();
-		System.out.println("查看缓存是否执行["+id+"]："+rdm+",time="+DateUtils.DateToString(new Date(), "yyyy-MM-dd HH:mm:ss"));
+		System.out.println("查看缓存是否执行["+id+"]："+rdm+",time="+DateUtils.dts(new Date(), "yyyy-MM-dd HH:mm:ss"));
 		return rdm;
 	}
 	

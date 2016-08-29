@@ -173,3 +173,122 @@ GET goods/info/_search
     }
   }
 }
+
+###########################################2016-08-29  中文分词器ik测试#############################################
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+PUT index
+
+POST index/fulltext/_mapping
+{
+    "fulltext": {
+             "_all": {
+            "analyzer": "ik_max_word",
+            "search_analyzer": "ik_max_word",
+            "term_vector": "no",
+            "store": "false"
+        },
+        "properties": {
+            "content": {
+                "type": "string",
+                "store": "no",
+                "term_vector": "with_positions_offsets",
+                "analyzer": "ik_max_word",
+                "search_analyzer": "ik_max_word",
+                "include_in_all": "true",
+                "boost": 8
+            }
+        }
+    }
+}
+
+POST index/fulltext/1
+{"content":"美国中留给伊拉克的是个烂摊子吗"}
+
+GET index/fulltext/1
+
+POST index/fulltext/2
+{"content":"公安部：各地校车将享最高路权"}
+
+POST index/fulltext/3
+{"content":"中韩渔警冲突调查：韩警平均每天扣1艘中国渔船"}
+
+POST index/fulltext/4
+{"content":"中国驻洛杉矶领事馆遭亚裔男子枪击 嫌犯已自首"}
+
+POST index/fulltext/_search
+{
+    "query" : { "term" : { "content" : "中国" }},
+    "highlight" : {
+        "pre_tags" : ["<tag1>", "<tag2>"],
+        "post_tags" : ["</tag1>", "</tag2>"],
+        "fields" : {
+            "content" : {}
+        }
+    }
+}
+
+GET goods/info/1
+
+GET goods/info/_analyze?analyzer=ik_max_word&pretty&goodsContext=香蕉
+
+POST goods/info/_setting
+{
+  "info": {
+    "_all": {
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_max_word",
+      "term_vector": "no",
+      "store": "false"
+    },
+    "properties": {
+      "goodsContext": {
+        "type": "string",
+        "store": "no",
+        "term_vector": "with_positions_offsets",
+        "analyzer": "ik_max_word",
+        "search_analyzer": "ik_max_word",
+        "include_in_all": "true",
+        "boost": 8
+      }
+    }
+  }
+}
+##########################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

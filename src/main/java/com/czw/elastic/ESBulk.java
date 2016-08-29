@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.elasticsearch.action.bulk.BackoffPolicy;
 import org.elasticsearch.action.bulk.BulkProcessor;
@@ -32,8 +33,6 @@ import org.junit.Test;
 
 import com.czw.elastic.entity.IndexTypeBean;
 import com.czw.util.ESUtils;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @author Zevi Chan
@@ -69,11 +68,13 @@ public class ESBulk {
 	}
 
 	/**
-	 * 批量操作
+	 * 批量操作,设置请求数大小自动flush
+	 * @throws InterruptedException 
+	 * 
 	 */
 	@Test
 	@Ignore
-	public void bulkProcessorTest() {
+	public void bulkProcessorTest() throws InterruptedException {
 
 		BulkProcessor bulkProcessor = BulkProcessor.builder(initClient(), new BulkProcessor.Listener() {
 			// for example request.numberOfActions()
@@ -102,6 +103,12 @@ public class ESBulk {
 		bulkProcessor.add((IndexRequest) new IndexRequest("twitter", "tweet", "1")
 				.source(/* your doc here */));
 		bulkProcessor.add(new DeleteRequest("twitter", "tweet", "2"));
+		
+		
+		//所有文档加载到bulkprocessor中可以通过这两个方法停止flush
+		//如果设置了flushInterval就不能使用
+		bulkProcessor.awaitClose(10, TimeUnit.MINUTES);
+		bulkProcessor.close();
 	}
 	
 	
