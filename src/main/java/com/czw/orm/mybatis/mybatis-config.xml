@@ -41,9 +41,10 @@
 				<dataSource type="org.myproject.C3P0DataSourceFactory"></dataSource>
 			 -->
 			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://192.168.229.128:3306/zevi" />
-				<property name="username" value="zevi" />
+				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
+<!-- 				<property name="driver" value="com.mysql.jdbc.Driver" /> -->
+				<property name="url" value="jdbc:mysql://192.168.124.129:3306/zevi" />
+				<property name="username" value="root" />
 				<property name="password" value="DvRe84Ue4!f4e5" />
 			</dataSource>
 		</environment>

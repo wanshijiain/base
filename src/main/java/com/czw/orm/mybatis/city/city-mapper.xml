@@ -19,8 +19,13 @@
 	
 	<!-- mysql  id属性属于自增字段，通过这种设置来添加 -->
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-	    insert city (code,name,isCaptial,provinceName,roundMode) values (
-	    	#{code}, #{name},#{isCaptial}, #{provinceName}, #{roundMode}
+	    insert city (code,name,isCapital,provinceName,roundMode) values (
+	    	#{code}, #{name},#{isCapital}, #{provinceName}, #{roundMode}
+	    )
+	</insert>
+	<insert id="insert2">
+	    insert city (id,code,name,isCapital,provinceName,roundMode) values (
+	    	#{id},#{code}, #{name},#{isCapital}, #{provinceName}, #{roundMode}
 	    )
 	</insert>
 	
