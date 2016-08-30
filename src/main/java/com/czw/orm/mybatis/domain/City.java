@@ -12,6 +12,7 @@ public class City {
 	private String name;
 	private int isCapital;
 	private String provinceName;
+	private int roundMode;
 	
 	
 	public int getId() {
@@ -48,6 +49,12 @@ public class City {
 	public String toString() {
 		return "City [id=" + id + ", code=" + code + ", name=" + name + ", isCapital=" + isCapital + ", provinceName="
 				+ provinceName + "]";
+	}
+	public int getRoundMode() {
+		return roundMode;
+	}
+	public void setRoundMode(int roundMode) {
+		this.roundMode = roundMode;
 	}
 	
 }

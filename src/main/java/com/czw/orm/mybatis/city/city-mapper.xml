@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.City">
+	
+	<!-- 表字段和类属性映射，返回map -->
+	<resultMap type="com.czw.orm.mybatis.domain.City" id="city">
+		<id column="id" property="id"/>
+		<result column="code" property="code"/>
+		<result column="name" property="name"/>
+		<result column="isCapital" property="isCapital"/>
+		<result column="provinceName" property="provinceName"/>
+		<!-- 该字段用于EnumTypeHandler测试 -->
+		<result column="roundMode" property="roundMode"/>
+	</resultMap>
 
-	<!-- 类名别名 ==有问题,待解决 -->
-	<!-- <typeAlias alias="domain.City" type="com.czw.db.mybatis.domain.City" /> -->
-
-	<select id="getUser" parameterType="int" resultType="com.czw.orm.mybatis.domain.City">
+	<select id="getUser" parameterType="int" resultMap="city">
 		select * from city where id=#{id}
 	</select>
+	
+	<!-- mysql  id属性属于自增字段，通过这种设置来添加 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+	    insert city (code,name,isCaptial,provinceName,roundMode) values (
+	    	#{code}, #{name},#{isCaptial}, #{provinceName}, #{roundMode}
+	    )
+	</insert>
+	
+	<select id="getUser2" parameterType="int" resultType="hashmap">
+		select * from city where id=#{id}
+	</select>
+	
+	
+	
 </mapper>
