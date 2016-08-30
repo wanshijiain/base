@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.City">
+
+	<!-- 类名别名 ==有问题,待解决 -->
+	<!-- <typeAlias alias="domain.City" type="com.czw.db.mybatis.domain.City" /> -->
+
+	<select id="getUser" parameterType="int" resultType="com.czw.orm.mybatis.domain.City">
+		select * from city where id=#{id}
+	</select>
+</mapper>

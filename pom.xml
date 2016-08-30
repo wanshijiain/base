@@ -278,6 +278,21 @@
 			<version>19.0</version>
 		</dependency>
 
+		<!-- mysql java connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.3</version>
+		</dependency>
+
+		<!-- mybatis orm -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+
+
 
 	</dependencies>
 	<!-- 自动下载elasticsearch包时总是missing包，配置JDK版本后就好了 -->

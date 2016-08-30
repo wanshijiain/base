@@ -126,6 +126,11 @@ public class ComUtils {
 		System.out.println(calt(sepTitle));
 	}
 	
+	/**
+	 * 想打印长度相同的分隔符，但因为中文宽度和字符，英文宽度不同，默认60的宽度
+	 * 也会因为start和end中文数不同而打印一样长.后期再改进吧
+	 * Fontmetrics
+	 */
 	private static String app = "=";
 	private static int size = 60;
 	private static StringBuilder sbLine = new StringBuilder();
