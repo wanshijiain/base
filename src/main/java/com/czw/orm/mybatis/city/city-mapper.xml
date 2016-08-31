@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.City">
-	
+
 	<!-- 表字段和类属性映射，返回map -->
 	<resultMap type="com.czw.orm.mybatis.domain.City" id="city">
-		<id column="id" property="id"/>
-		<result column="code" property="code"/>
-		<result column="name" property="name"/>
-		<result column="isCapital" property="isCapital"/>
-		<result column="provinceName" property="provinceName"/>
+		<id column="id" property="id" />
+		<result column="code" property="code" />
+		<result column="name" property="name" />
+		<result column="isCapital" property="isCapital" />
+		<result column="provinceName" property="provinceName" />
 		<!-- 该字段用于EnumTypeHandler测试 -->
-		<result column="roundMode" property="roundMode"/>
+		<result column="roundMode" property="roundMode" />
 	</resultMap>
 
-	<select id="getUser" parameterType="int" resultMap="city">
-		select * from city where id=#{id}
+	<select id="getCity" parameterType="int" resultMap="city">
+		select * from
+		city where id=#{id}
 	</select>
-	
-	<!-- mysql  id属性属于自增字段，通过这种设置来添加 -->
+
+	<!-- mysql id属性属于自增字段，通过这种设置来添加 -->
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-	    insert city (code,name,isCapital,provinceName,roundMode) values (
-	    	#{code}, #{name},#{isCapital}, #{provinceName}, #{roundMode}
-	    )
+		insert city (code,name,isCapital,provinceName,roundMode) values (
+		#{code}, #{name},#{isCapital}, #{provinceName}, #{roundMode}
+		)
 	</insert>
 	<insert id="insert2">
-	    insert city (id,code,name,isCapital,provinceName,roundMode) values (
-	    	#{id},#{code}, #{name},#{isCapital}, #{provinceName}, #{roundMode}
-	    )
+		insert city (id,code,name,isCapital,provinceName,roundMode) values (
+		#{id},#{code}, #{name},#{isCapital}, #{provinceName}, #{roundMode}
+		)
 	</insert>
-	
-	<select id="getUser2" parameterType="int" resultType="hashmap">
-		select * from city where id=#{id}
+
+	<select id="getCity2" parameterType="int" resultType="hashmap">
+		select *
+		from city where id=#{id}
 	</select>
-	
-	
-	
+
+	<insert id="mutiInsert">
+		insert city (id,code,name,isCapital,provinceName,roundMode) values
+		<foreach item="item" collection="list" separator=",">
+			(#{item.id},#{item.code},#{item.name},#{item.isCapital},#{item.provinceName},#{item.roundMode})
+		</foreach>
+	</insert>
+
+
+
 </mapper>

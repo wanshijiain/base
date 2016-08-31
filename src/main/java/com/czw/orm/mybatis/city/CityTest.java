@@ -3,10 +3,11 @@ package com.czw.orm.mybatis.city;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Ignore;
@@ -24,11 +25,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class CityTest {
 	
+	private SqlSession session = MybatisUtils.getSession();
+	
 	@Test
-//	@Ignore
+	@Ignore
 	public void getUser() throws IOException{
-		String statement = "mybatis.City.getUser";
-        City city = MybatisUtils.getSession().selectOne(statement, 1308);
+		String statement = "mybatis.City.getCity";
+        City city = session.selectOne(statement, 1308);
         System.out.println(city);
         //City [id=1308, code=1308, name=承德市, isCapital=0, provinceName=河北省]
 	}
@@ -36,8 +39,8 @@ public class CityTest {
 	@Test
 	@Ignore
 	public void getUser2(){
-		String statement = "mybatis.City.getUser2";
-		HashMap<String,Object> city = MybatisUtils.getSession().selectOne(statement,1308);
+		String statement = "mybatis.City.getCity2";
+		HashMap<String,Object> city = session.selectOne(statement,1308);
 		for(String key:city.keySet())
 			System.out.println(key+":"+city.get(key));
 		
@@ -54,7 +57,6 @@ public class CityTest {
 	@Test
 	@Ignore
 	public void insert() throws JsonParseException, JsonMappingException, IOException{
-		SqlSession session = MybatisUtils.getSession();
 		ObjectMapper om = new ObjectMapper();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("d://tmp/city.dat")),"UTF-8"));
@@ -64,6 +66,30 @@ public class CityTest {
 			City city = om.readValue(s, City.class);
 			session.insert("mybatis.City.insert2", city);
 		}
+		session.commit();
+		br.close();
+		session.close();
+	}
+	
+	/**
+	 * 多行插入,必须要数据库支持《mysql支持，oracle不支持》
+	 * @throws JsonParseException
+	 * @throws JsonMappingException
+	 * @throws IOException
+	 */
+	@Test
+//	@Ignore
+	public void mutiInsert() throws JsonParseException, JsonMappingException, IOException{
+		List<City> cityList = new ArrayList<City>();
+		ObjectMapper om = new ObjectMapper();
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("d://tmp/city.dat")),"UTF-8"));
+		String s = null;
+		while((s = br.readLine())!=null){
+			City city = om.readValue(s, City.class);
+			cityList.add(city);
+		}
+		session.insert("mybatis.City.mutiInsert",cityList);
+		
 		session.commit();
 		br.close();
 		session.close();

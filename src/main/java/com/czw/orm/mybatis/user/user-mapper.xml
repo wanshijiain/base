@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.User">
+
+	<!-- 表字段和类属性映射，返回map -->
+	<resultMap type="com.czw.orm.mybatis.domain.User" id="user">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="age" property="age" />
+		<result column="regTime" property="regTime" />
+	</resultMap>
+
+	<select id="getUser" parameterType="int" resultMap="user">
+		select * from user where id=#{id}
+	</select>
+
+
+
+</mapper>
