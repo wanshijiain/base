@@ -13,6 +13,7 @@ public class User {
 	private String name;
 	private int age;
 	private String regTime;
+	private String password;
 	
 	
 	public int getId() {
@@ -41,7 +42,14 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", age=" + age + ", regTime=" + regTime + "]";
+		return "User [id=" + id + ", name=" + name + ", age=" + age + ", regTime=" + regTime + ", password=" + password
+				+ "]";
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

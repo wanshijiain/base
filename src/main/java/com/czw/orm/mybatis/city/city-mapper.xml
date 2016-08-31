@@ -31,8 +31,7 @@
 	</insert>
 
 	<select id="getCity2" parameterType="int" resultType="hashmap">
-		select *
-		from city where id=#{id}
+		select * from city where id=#{id}
 	</select>
 
 	<insert id="mutiInsert">
