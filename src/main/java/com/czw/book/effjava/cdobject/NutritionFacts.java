@@ -1,4 +1,4 @@
-package com.czw.effjava.cdobject;
+package com.czw.book.effjava.cdobject;
 
 /** 
  * 

@@ -1,4 +1,4 @@
-package com.czw.effjava;
+package com.czw.book.effjava;
 
 import java.io.Serializable;
 import java.io.ByteArrayInputStream;

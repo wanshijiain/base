@@ -1,8 +1,8 @@
-package com.czw.effjava.main;
+package com.czw.book.effjava.main;
 
 import org.junit.Test;
 
-import com.czw.effjava.cdobject.NutritionFacts;
+import com.czw.book.effjava.cdobject.NutritionFacts;
 
 /** 
  * 

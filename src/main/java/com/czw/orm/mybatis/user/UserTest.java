@@ -82,7 +82,7 @@ public class UserTest {
 	 * 当条件不成立就不会存在where条件，从而查找所有值
 	 */
 	@Test
-	// @Ignore
+	@Ignore
 	public void whereTest() {
 		User user = new User();
 		// user.setName("张%");
@@ -91,6 +91,11 @@ public class UserTest {
 			System.out.println(u);
 		}
 
+	}
+	@Test
+	public void test(){
+		int b = 0b00000000000000000000000000000001;
+		System.out.println(b);
 	}
 
 }
