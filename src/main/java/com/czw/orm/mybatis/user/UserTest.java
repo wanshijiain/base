@@ -31,11 +31,10 @@ public class UserTest {
 //	@Ignore
 	public void insert(){
 		User user = new User();
-		user.setId(2);
-		user.setAge(54);
-		user.setName("王五");
+		user.setAge(18);
+		user.setName("Jack");
 		user.setRegTime(DateUtils.dtts(new Date()));
-		user.setPassword("wangwu");
+		user.setPassword("485jack");
 		
 		session.insert("mybatis.User.insert", user);
 		

@@ -21,8 +21,8 @@
 			SELECT LAST_INSERT_ID() from user
 			select @@IDENTITY+1 as id
 		</selectKey> -->
-		insert user (id, name, age, regTime,password)
-		values (#{id}, #{name}, #{age}, #{regTime},#{password})
+		insert user (name, age, regTime,password)
+		values (#{name}, #{age}, #{regTime},#{password})
 	</insert>
 
 
