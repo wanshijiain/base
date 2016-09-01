@@ -21,28 +21,26 @@
 	</settings>
 
 	<!-- Domain类别名设置 ==有问题,待解决 -->
-	<!-- <typeAliases> <typeAlias alias="domain.City" type="com.czw.db.mybatis.domain.City"/> 
-		<typeAlias alias="User" type="com.czw.db.mybatis.domain.User" /> </typeAliases> -->
+	<typeAliases>
+		<typeAlias alias="alsCity" type="com.czw.orm.mybatis.domain.City" />
+		<typeAlias alias="alsUser" type="com.czw.orm.mybatis.domain.User" />
+	</typeAliases>
 
 	<!-- 设置类型转换处理器,可自定义类型处理器继承自BaseTypeHandler或TypeHandler -->
-	<!-- <typeHandlers>
-		<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
-			javaType="java.math.RoundingMode" />
-	</typeHandlers> -->
-	
+	<!-- <typeHandlers> <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" 
+		javaType="java.math.RoundingMode" /> </typeHandlers> -->
+
 
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<!-- 配置数据库连接信息 -->
-			
-			<!-- UNPOOLED|POOLED|JNDI  请求创建|连接池|用作EJB应用服务器
-				另外要使用第三方数据源可以通过继承UnpooledDataSourceFactory 类来实现
-				<dataSource type="org.myproject.C3P0DataSourceFactory"></dataSource>
-			 -->
+
+			<!-- UNPOOLED|POOLED|JNDI 请求创建|连接池|用作EJB应用服务器 另外要使用第三方数据源可以通过继承UnpooledDataSourceFactory 
+				类来实现 <dataSource type="org.myproject.C3P0DataSourceFactory"></dataSource> -->
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
-<!-- 				<property name="driver" value="com.mysql.jdbc.Driver" /> -->
+				<!-- <property name="driver" value="com.mysql.jdbc.Driver" /> -->
 				<property name="url" value="jdbc:mysql://192.168.124.128:3306/zevi" />
 				<property name="username" value="root" />
 				<property name="password" value="DvRe84Ue4!f4e5" />
@@ -53,10 +51,7 @@
 	<mappers>
 		<mapper resource="com/czw/orm/mybatis/city/city-mapper.xml" />
 		<mapper resource="com/czw/orm/mybatis/user/user-mapper.xml" />
-		<!-- 
-		<mapper url="file:///var/mappers/AuthorMapper.xml"/>
-		<mapper class="org.mybatis.builder.AuthorMapper"/>
-		 -->
+		<!-- <mapper url="file:///var/mappers/AuthorMapper.xml"/> <mapper class="org.mybatis.builder.AuthorMapper"/> -->
 	</mappers>
 
 </configuration>

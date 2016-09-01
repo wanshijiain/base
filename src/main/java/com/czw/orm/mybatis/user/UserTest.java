@@ -21,14 +21,14 @@ public class UserTest {
 	private SqlSession session = MybatisUtils.getSession();
 	
 	@Test
-	@Ignore
+//	@Ignore
 	public void getUser() throws IOException{
 		User user = session.selectOne("mybatis.User.getUser",1);
 		System.out.println(user);
 	}
 	
 	@Test
-//	@Ignore
+	@Ignore
 	public void insert(){
 		User user = new User();
 		user.setAge(18);
@@ -41,6 +41,29 @@ public class UserTest {
 		session.commit();
 		session.close();
 	}
+	
+	@Test
+	@Ignore
+	public void update(){
+		User user = new User();
+		user.setId(4);
+		user.setPassword("mdzz");
+		session.update("mybatis.User.updatePassword", user);
+		session.commit();
+		session.close();
+		
+	}
+	
+	@Test
+	@Ignore
+	public void delete(){
+		int id = 5;
+		session.delete("mybatis.User.delete",id);
+		session.commit();
+		session.close();
+		
+	}
+	
 	
 	
 	
