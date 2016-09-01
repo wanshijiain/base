@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.User">
-	
+
 	<!-- 表字段和类属性映射，返回map -->
 	<resultMap type="com.czw.orm.mybatis.domain.User" id="user">
 		<id column="id" property="id" />
@@ -10,48 +10,89 @@
 		<result column="regTime" property="regTime" />
 		<result column="password" property="password" />
 	</resultMap>
-	
-	
-	<cache
-		eviction="LRU"
-		flushInterval="10000"
-		size="512"
-		readOnly="true"/> 
-	<!-- 	
-		自定义缓存
-		<cache type="com.czw.cache.ehcache.xx"/>
-		
-		也许将来会用到相同的自定义缓存实现，通过这种方式引用
-		<cache-ref namespace="com.someone.application.data.SomeMapper"/>	
-	-->
-	
-	<!-- 
-		参数类型的设置：#{property,javaType=int,jdbcType=NUMERIC}
-		
-	 -->
-	
-	<select id="getUser" parameterType="int" resultMap="user" flushCache="false" useCache="true">
+
+
+	<cache eviction="LRU" flushInterval="10000" size="512" readOnly="true" />
+	<!-- 自定义缓存
+	<cache type="com.czw.cache.ehcache.xx" />
+	也许将来会用到相同的自定义缓存实现，通过这种方式引用
+	<cache-ref namespace="com.someone.application.data.SomeMapper" /> -->
+
+	<!-- 参数类型的设置：#{property,javaType=int,jdbcType=NUMERIC} -->
+
+	<select id="getUser" parameterType="int" resultMap="user"
+		flushCache="false" useCache="true">
 		select * from user where id=#{id}
 	</select>
-	
+
+	<select id="getAdultUser" resultMap="user">
+		SELECT * FROM user
+		WHERE age >= 18
+		<if test="name != null">
+			AND name LIKE #{name}
+			<!-- AND name LIKE CONCAT('%',#{name},'%') -->
+		</if>
+	</select>
+
+
+	<!-- 模糊查找的表达方式 -->
+	<select id="getUserByName" resultMap="user">
+		SELECT * FROM user
+		<!-- 至少有一个条件才会可用 -->
+		<where>
+			<if test="name != null">
+				AND name LIKE #{name}
+				<!-- AND name LIKE CONCAT('%',#{name},'%') -->
+			</if>
+		</where>
+	</select>
+	<!-- 模糊查找的表达方式2 -->
+	<select id="getUserByName2" resultType="user">
+		<bind name="pattern" value="'%' + _parameter.getName() + '%'" />
+		SELECT * FROM user
+		WHERE user LIKE #{pattern}
+	</select>
+
+
 	<insert id="insert" flushCache="true">
 		<!-- <selectKey keyProperty="id" resultType="int" order="BEFORE">
 			返回多行最近插入的id
-			SELECT LAST_INSERT_ID() from user
-			select @@IDENTITY+1 as id
+			SELECT LAST_INSERT_ID() from user select @@IDENTITY+1 as id
 		</selectKey> -->
 		insert user (name, age, regTime,password)
-		values (#{name}, #{age}, #{regTime},#{password})
+		values (#{name}, #{age},
+		#{regTime},#{password})
 	</insert>
-	
+
 	<update id="updatePassword" flushCache="true">
-		update user set password = #{password} where id = #{id}
+		update user set password
+		= #{password} where id = #{id}
 	</update>
-	
+
 	<delete id="delete" flushCache="true">
 		delete from user where id = #{id}
 	</delete>
 
+	<!-- foreach另一个用法 -->
+	<!-- <select id="selectPostIn" resultType="domain.blog.Post">
+		SELECT * FROM
+		POST P WHERE ID in
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")"> #{item} </foreach>
+	</select> -->
+	
+	<!-- muti-db，不同数据库的sql配置方式 -->
+	<!-- <insert id="insert">
+	  <selectKey keyProperty="id" resultType="int" order="BEFORE">
+	    <if test="_databaseId == 'oracle'">
+	      select seq_users.nextval from dual
+	    </if>
+	    <if test="_databaseId == 'db2'">
+	      select nextval for seq_users from sysibm.sysdummy1"
+	    </if>
+	  </selectKey>
+	  insert into users values (#{id}, #{name})
+	</insert> -->
 
 
 </mapper>

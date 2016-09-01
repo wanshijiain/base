@@ -21,10 +21,10 @@
 	</settings>
 
 	<!-- Domain类别名设置 ==有问题,待解决 -->
-	<typeAliases>
+	<!-- <typeAliases>
 		<typeAlias alias="alsCity" type="com.czw.orm.mybatis.domain.City" />
 		<typeAlias alias="alsUser" type="com.czw.orm.mybatis.domain.User" />
-	</typeAliases>
+	</typeAliases> -->
 
 	<!-- 设置类型转换处理器,可自定义类型处理器继承自BaseTypeHandler或TypeHandler -->
 	<!-- <typeHandlers> <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" 
