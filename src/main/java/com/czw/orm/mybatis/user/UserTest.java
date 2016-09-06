@@ -92,10 +92,5 @@ public class UserTest {
 		}
 
 	}
-	@Test
-	public void test(){
-		int b = 0b00000000000000000000000000000001;
-		System.out.println(b);
-	}
 
 }
