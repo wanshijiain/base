@@ -1,7 +1,7 @@
 
 
 
-Mongodb命令：【http://www.runoob.com/mongodb/mongodb-databases-documents-collections.html】
+Mongodb命令：[菜鸟Mongo学习](http://www.runoob.com/mongodb/mongodb-databases-documents-collections.html)
 	
 	关系型数据库区别：
 		RDBMS			MongoDB
