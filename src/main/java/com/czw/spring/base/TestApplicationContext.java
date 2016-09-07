@@ -1,8 +1,8 @@
 package com.czw.spring.base;
 
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
 import com.czw.spring.base.ioc.Person;
 
@@ -15,8 +15,9 @@ public class TestApplicationContext {
 	
 	@Test
 	public void beanPostProcessor(){
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring-test/spring-ioc.xml");
-		Person person = context.getBean(Person.class);
+//		ApplicationContext context = new ClassPathXmlApplicationContext("spring-test/spring-ioc.xml");
+		BeanFactory beanFactory = new DefaultListableBeanFactory();
+		Person person = beanFactory.getBean(Person.class);
 		person.sing("Only One - BoA");
 		
 	}
