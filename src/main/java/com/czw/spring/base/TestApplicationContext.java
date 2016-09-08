@@ -3,7 +3,14 @@ package com.czw.spring.base;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.support.BeanDefinitionDefaults;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import com.czw.spring.base.ioc.Person;
 
@@ -12,21 +19,26 @@ import com.czw.spring.base.ioc.Person;
  * @Date 2016-09-07 17:58:35
  */
 public class TestApplicationContext {
-	
-	
+
 	@Test
 	@Ignore
-	public void beanPostProcessor(){
-//		ApplicationContext context = new ClassPathXmlApplicationContext("spring-test/spring-ioc.xml");
-		BeanFactory beanFactory = new DefaultListableBeanFactory();
-		Person person = beanFactory.getBean(Person.class);
+	public void beanPostProcessor() {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-test/spring-ioc.xml");
+		Person person = ctx.getBean(Person.class);
 		person.sing("Only One - BoA");
 	}
-	
+
+	/**
+	 * 可以将外部创建的对象放入ioc容器中
+	 */
 	@Test
-	public void beanFactory(){
-		
+	public void outsideBeanRegistrater() {
+		BeanDefinitionDefaults bdb = new BeanDefinitionDefaults();
+
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-test/spring-ioc.xml");
+		DefaultListableBeanFactory bf = (DefaultListableBeanFactory) ctx.getBeanFactory();
+		// bf.registerBeanDefinition("", beanDefinition);
+
 	}
-	
-	
+
 }
