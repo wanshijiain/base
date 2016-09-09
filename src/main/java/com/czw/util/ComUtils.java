@@ -76,8 +76,8 @@ public class ComUtils {
 	 * <p>
 	 * name ex:zoo.json
 	 * <p>
-	 * isMain when is true,set src.main.java path<br/>
-	 * isMain when is false,set src.main.resources path<br/>
+	 * isMain when it's true,set src.main.java path<br/>
+	 * isMain when it's false,set src.main.resources path<br/>
 	 * @param clazz
 	 * @param path
 	 * @param name
@@ -128,7 +128,7 @@ public class ComUtils {
 	
 	/**
 	 * 想打印长度相同的分隔符，但因为中文宽度和字符，英文宽度不同，默认60的宽度
-	 * 也会因为start和end中文数不同而打印一样长.后期再改进吧
+	 * 也会因为start和end中文数不同而打印不一样长.后期再改进吧
 	 * Fontmetrics
 	 */
 	private static String app = "=";

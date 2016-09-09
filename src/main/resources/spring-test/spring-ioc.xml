@@ -7,7 +7,7 @@
 
 	<bean id="beanPostProcessor" class="com.czw.spring.base.ioc.MyBeanPostProcessor"></bean>
 	
-	<bean class="com.czw.spring.base.ioc.Person">
+	<bean class="com.czw.spring.base.ioc.Person" scope="prototype">
 		<property name="name" value="张三"/>
 		<property name="age" value="20"/>
 	</bean>

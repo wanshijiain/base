@@ -6,6 +6,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
 import com.czw.spring.base.ioc.Person;
@@ -23,13 +24,26 @@ public class TestBeanFactory {
 	 * 不提供BeanPostProcessor,aop,事件驱动等功能（需要这些功能使用applicationContext）
 	 */
 	@Test
-	@Ignore
-	public void beanFactory() {
+//	@Ignore
+	public void defaultListableBeanFactory() {
 		BeanDefinitionRegistry reg = new DefaultListableBeanFactory();
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(reg);
 		reader.loadBeanDefinitions(new ClassPathResource("spring-test/spring-ioc.xml"));
 		BeanFactory bf = (BeanFactory) reg;
 		Person p = bf.getBean(Person.class);
 		p.sing("Lucía - Alvaro Soler");
+	}
+	
+	/**
+	 * DefaultListableBeanFactory的便捷扩展,其实内部的实现跟上面相同
+	 */
+	@Test
+	@Ignore
+	public void xmlBeanFactory(){
+		ClassPathResource cpr = new ClassPathResource("spring-test/spring-ioc.xml");
+		BeanFactory bf = new XmlBeanFactory(cpr);
+		Person p = bf.getBean(Person.class);
+		p.sing("Impossible (Acoustic) - unplug - Maddi Jane");
+		
 	}
 }
