@@ -1,15 +1,25 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/context/spring-aop.xsd">
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/context/spring-aop.xsd
+        ">
 
 	<bean id="beanPostProcessor" class="com.czw.spring.base.ioc.MyBeanPostProcessor"></bean>
-	
-	<bean class="com.czw.spring.base.ioc.Person" scope="prototype">
-		<property name="name" value="张三"/>
-		<property name="age" value="20"/>
+
+	<bean id="person1" class="com.czw.spring.base.ioc.Person" scope="prototype" p:name="张三" p:age="20" />
+
+	<!-- 定义replace方法 -->
+	<bean id="myMethodReplacer" class="com.czw.spring.base.MyMethodReplacer" />
+	<bean id="person2" class="com.czw.spring.base.ioc.Person" scope="prototype">
+		<property name="name" value="张三" />
+		<property name="age" value="20" />
+		<replaced-method name="sing" replacer="myMethodReplacer">
+			<!-- java.lang.String or String or Str -->
+			<arg-type>String</arg-type>
+		</replaced-method>
 	</bean>
 
 </beans>

@@ -16,10 +16,10 @@ import com.czw.spring.base.ioc.Person;
 public class TestApplicationContext {
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void beanPostProcessor() {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-test/spring-ioc.xml");
-		Person person = ctx.getBean(Person.class);
+		Person person = ctx.getBean("person2",Person.class);
 		person.sing("Only One - BoA");
 	}
 
@@ -27,6 +27,7 @@ public class TestApplicationContext {
 	 * 可以将外部创建的对象放入ioc容器中
 	 */
 	@Test
+	@Ignore
 	public void outsideBeanRegistrater() {
 		BeanDefinitionDefaults bdb = new BeanDefinitionDefaults();
 
