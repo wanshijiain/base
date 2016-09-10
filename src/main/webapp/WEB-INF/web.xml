@@ -8,7 +8,12 @@
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-
+	
+	<!-- 
+		可以同时配置ContextLoaderListener和DispatcherServlet，为了将spring的配置文件和springmvc的配置文件分开用
+		http://spring.cndocs.tk/beans.html#beans-java-instantiating-container-web
+	 -->
+	
 	<!-- annotation bean configuration -->
 	<!-- <context-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value> 
 		</context-param> -->
