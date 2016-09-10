@@ -9,7 +9,8 @@
 
 	<bean id="beanPostProcessor" class="com.czw.spring.base.ioc.MyBeanPostProcessor"></bean>
 
-	<bean id="person1" class="com.czw.spring.base.ioc.Person" scope="prototype" p:name="张三" p:age="20" />
+	<bean id="person1" class="com.czw.spring.base.ioc.Person" scope="prototype"
+		p:name="张三" p:age="20" />
 
 	<!-- 定义replace方法 -->
 	<bean id="myMethodReplacer" class="com.czw.spring.base.MyMethodReplacer" />
@@ -21,6 +22,8 @@
 			<arg-type>String</arg-type>
 		</replaced-method>
 	</bean>
+
+	<bean id="myctx" class="com.czw.spring.base.ioc.MyApplicationContext" />
 
 </beans>
 

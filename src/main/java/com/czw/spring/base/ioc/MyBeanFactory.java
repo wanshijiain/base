@@ -13,15 +13,17 @@ import org.springframework.beans.factory.BeanFactoryAware;
  */
 public class MyBeanFactory implements BeanFactoryAware {
 	
-	private static BeanFactory beanFactory;
+	private BeanFactory beanFactory;
 
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		this.beanFactory = beanFactory;
 	}
 	
-	public static BeanFactory getBeanFactory(){
-		return beanFactory;
+	public Object getBean(String beanName){
+		if(beanFactory != null)
+			return beanFactory.getBean(beanName);
+		return null;
 	}
 	
 }
