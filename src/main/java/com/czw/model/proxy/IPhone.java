@@ -16,12 +16,12 @@ public class IPhone implements Mobile {
 	
 	@Override
 	public void charge() {
-		System.out.println(name + " IPhone 充电中...");
+		System.out.println(name + ":IPhone 充电中...");
 	}
 
 	@Override
 	public void answer() {
-		System.out.println(name +"　IPhone 接电话...");
+		System.out.println(name +":IPhone 接电话...");
 	}
 
 
