@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author ZeviChen
  * @Date 2016-08-23 17:22:29
  */
-public class User implements Serializable {
+public class User implements Serializable,Cloneable {
 	
 	private static final long serialVersionUID = -8081346162611635878L;
 	
@@ -15,6 +15,7 @@ public class User implements Serializable {
 	private String email;
 	private String gender;
 	private String birthday;
+	private Address address;
 	
 	
 	public int getId() {
@@ -47,6 +48,24 @@ public class User implements Serializable {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public User(){}
+	public User(String name, Address address) {
+		super();
+		this.name = name;
+		this.address = address;
+	}
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
+	
 	
 	
 }

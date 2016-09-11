@@ -292,6 +292,12 @@
 			<version>3.4.1</version>
 		</dependency>
 
+		<!-- POI 解析excell,word,ppt -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.14</version>
+		</dependency>
 
 
 	</dependencies>
