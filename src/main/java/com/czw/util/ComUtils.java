@@ -138,10 +138,10 @@ public class ComUtils {
 		sbLine.setLength(0);
 		sbLine.append(line);
 		int delta = size -line.length();
-		System.out.println("差值是："+delta);
+//		System.out.println("差值是："+delta);
 		int absValue = Math.abs(delta);
 		
-		System.out.println("绝对值："+absValue);
+//		System.out.println("绝对值："+absValue);
 		boolean isEven = absValue%2==0?true:false;
 		int a,b;
 		if(isEven){
@@ -152,7 +152,7 @@ public class ComUtils {
 			a = absValue/2;
 			b = a+1;
 		}
-		System.out.println("a和b的值："+a+","+b);
+//		System.out.println("a和b的值："+a+","+b);
 		if(delta < 0){
 			if(isEven){
 				line = sbLine.substring(a, sbLine.length()-a);
@@ -164,19 +164,19 @@ public class ComUtils {
 		else if(delta > 0){
 			if(isEven){
 				String ap = loopStr(app,a);
-				System.out.println("ap值："+ap);
+//				System.out.println("ap值："+ap);
 				sbLine.insert(0, ap);
 				line = sbLine.append(ap).toString();
 			}else{
 				String ap = loopStr(app,a);
 				String bp = loopStr(app,b);
-				System.out.println("ap值："+ap);
-				System.out.println("ap值："+bp);
+//				System.out.println("ap值："+ap);
+//				System.out.println("ap值："+bp);
 				sbLine.insert(0, ap);
 				line = sbLine.append(bp).toString();
 			}
 		}
-		System.out.println("结果的长度: "+line.length());
+//		System.out.println("结果的长度: "+line.length());
 		return line;
 	}
 	private static StringBuilder sb = new StringBuilder();

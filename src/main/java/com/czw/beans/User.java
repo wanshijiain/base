@@ -60,6 +60,10 @@ public class User implements Serializable,Cloneable {
 		this.name = name;
 		this.address = address;
 	}
+	public User(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
