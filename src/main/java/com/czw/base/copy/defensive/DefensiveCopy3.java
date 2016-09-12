@@ -22,6 +22,8 @@ public class DefensiveCopy3 {
 		
 	}
 	
+	//返回的只是一个新对象，而不是当前对象中的对象属性引用，所以外部获得的引用的修改不会修改该对象中属性对象的值
+	//起到了保护对象内部值得功能
 	public Date start(){
 		return new Date(start.getTime());
 	}

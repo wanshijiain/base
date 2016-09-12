@@ -33,27 +33,31 @@ public class MainTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void defensiveCopy1(){
-		/*Date start = new Date();
-		Date end = new Date();
-		DefensiveCopy1 dc1 = new DefensiveCopy1(start, end);
-		end.setYear(78);
-		log.info("DefensiveCopy1: \nstart = {} , end = {}",dc1.start().toString(),dc1.end().toString());*/
+		Date start1 = new Date();
+		Date end1 = new Date();
+		log.info("DefensiveCopy1: \nstart = {} , end = {}",start1,end1);
+		DefensiveCopy1 dc1 = new DefensiveCopy1(start1, end1);
+		end1.setYear(78);
+		log.info("DefensiveCopy1: \nstart = {} , end = {}",dc1.start().toString(),dc1.end().toString());
+		System.out.println();
 		
 		//构造器参数保护
-		/*Date start = new Date();
-		Date end = new Date();
-		DefensiveCopy2 dc1 = new DefensiveCopy2(start, end);
-		end.setYear(78);	
-		log.info("DefensiveCopy1: \nstart = {} , end = {}",dc1.start().toString(),dc1.end().toString());*/
-		
+		Date start2 = new Date();
+		Date end2 = new Date();
+		log.info("==DefensiveCopy2: \nstart = {} , end = {}",start1,end1);
+		DefensiveCopy2 dc2 = new DefensiveCopy2(start2, end2);
+		end2.setYear(78);	
+		log.info("==DefensiveCopy2: \nstart = {} , end = {}",dc2.start().toString(),dc2.end().toString());
+		System.out.println();
 		
 		//构造器参数和返回值保护,这种保护性拷贝就不会出现可以修改类中参数值的情况
-		Date start = new Date();
-		Date end = new Date();
-		DefensiveCopy3 dc1 = new DefensiveCopy3(start, end);
-		end.setYear(78);
-		dc1.start().setYear(10);
-		log.info("DefensiveCopy1: \nstart = {} , end = {}",dc1.start().toString(),dc1.end().toString());
+		Date start3 = new Date();
+		Date end3 = new Date();
+		log.info("====DefensiveCopy3: \nstart = {} , end = {}",start3,end3);
+		DefensiveCopy3 dc3 = new DefensiveCopy3(start3, end3);
+		end3.setYear(78);
+		dc3.start().setYear(10);
+		log.info("====DefensiveCopy3: \nstart = {} , end = {}",dc3.start().toString(),dc3.end().toString());
 		
 	}
 	
