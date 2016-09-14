@@ -36,7 +36,7 @@ public class JunitDataSerializationAndPolymorphism {
 	@Test
 	@Ignore
 	public void test() throws IOException{
-		File f = new File(ComUtils.setFilePath(this.getClass(),"com.czw", outputFile,true));
+		File f = new File(ComUtils.getFilePath(this.getClass(),"com.czw", outputFile,true));
 		FileWriter fw = new FileWriter(f);
 		fw.write("{}");
 		fw.close();
@@ -63,7 +63,7 @@ public class JunitDataSerializationAndPolymorphism {
  
         ObjectMapper mapper = new ObjectMapper();
         
-        File file = new File(ComUtils.setFilePath(this.getClass(),"com.czw.toolkit.jackson", outputFile,true));
+        File file = new File(ComUtils.getFilePath(this.getClass(),"com.czw.toolkit.jackson", outputFile,true));
         mapper.writerWithDefaultPrettyPrinter().writeValue(new FileWriter(file), zoo);
 	}
 	
