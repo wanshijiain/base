@@ -299,6 +299,27 @@
 			<version>3.14</version>
 		</dependency>
 
+		<!-- Jetty server -->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>9.3.10.v20160621</version>
+		</dependency>
+		<!-- Jetty servlet -->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>9.3.10.v20160621</version>
+		</dependency>
+
+		<!-- Jetty web application support -->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>9.3.10.v20160621</version>
+		</dependency>
+
+
 
 	</dependencies>
 	<!-- 自动下载elasticsearch包时总是missing包，配置JDK版本后就好了 -->
