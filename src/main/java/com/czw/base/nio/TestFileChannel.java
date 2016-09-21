@@ -12,6 +12,12 @@ import java.nio.channels.FileChannel;
 
 
 /**
+ * capacity:缓冲区容量
+ * position:读模式:开始读取位置,写模式:开始写的位置
+ * limit:读模式:最多可以都的数据位置,写模式:capacity
+ *
+ * 所以写模式到读模式的切换就是:limit=position,position=0
+ *
  * Created by ZeviChen on 2016/9/21.
  */
 public class TestFileChannel {
@@ -26,12 +32,14 @@ public class TestFileChannel {
         while (flag != -1) {
             System.out.println("flag = " + flag);
 
+            //写模式到读模式的切换
             bb.flip();
             while (bb.hasRemaining()) {
                 System.out.println("remain:" + (char) bb.get());
             }
 
-            bb.clear();
+            bb.clear();//清空所有数据
+            bb.compact();//未读的数据放到缓冲区开始出等待下一次读取
             flag = fc.read(bb);
             //
         }
