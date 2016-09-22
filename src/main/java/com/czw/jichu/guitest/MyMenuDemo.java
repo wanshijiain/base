@@ -76,8 +76,7 @@ public class MyMenuDemo {
 	}
 	private void myEvent()
 	{
-		saveItem.addActionListener(new ActionListener()
-		{
+		saveItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				if(file==null){
@@ -104,8 +103,7 @@ public class MyMenuDemo {
 				
 			}
 		});
-		openItem.addActionListener(new ActionListener()
-		{
+		openItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				openDia.setVisible(true);
@@ -137,8 +135,7 @@ public class MyMenuDemo {
 				System.exit(0);
 			}
 		});
-		closeItem.addActionListener(new ActionListener()
-		{
+		closeItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				System.exit(0);
