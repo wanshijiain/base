@@ -14,7 +14,7 @@ import com.czw.web.main.bean.Person;
 @Controller
 public class IndexAction {
 	
-	@RequestMapping("/")
+	@RequestMapping
 	public String index(){
 		return "index/index";
 	}

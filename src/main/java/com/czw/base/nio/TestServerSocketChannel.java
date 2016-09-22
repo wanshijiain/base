@@ -17,37 +17,39 @@ public class TestServerSocketChannel {
     public static void main(String[] args) throws IOException {
         ServerSocketChannel server = ServerSocketChannel.open();
         server.configureBlocking(false);
-        server.bind(new InetSocketAddress("localhost",9527));
-
+        server.bind(new InetSocketAddress("localhost", 9527));
+        int ops = server.validOps();
         Selector selector = Selector.open();
-        server.register(selector, SelectionKey.OP_ACCEPT);
+        server.register(selector, ops, null);
 
-        while (true){
+        while (true) {
+            System.out.println("Waiting for select ...");
             selector.select();
-            Iterator it = selector.selectedKeys().iterator();
-            while (it.hasNext()){
-                SelectionKey selectionKey = (SelectionKey) it.next();
-                it.remove();
-                if(selectionKey.isAcceptable()) {
-                    ServerSocketChannel ssc = (ServerSocketChannel) selectionKey.channel();
-                    SocketChannel channel = ssc.accept();
-                    channel.configureBlocking(false);
+            Iterator<SelectionKey> it = selector.selectedKeys().iterator();
+            while (it.hasNext()) {
+                SelectionKey selectionKey = it.next();
 
-                    channel.write(ByteBuffer.wrap(new String("已经建立连接...").getBytes()));
-                    channel.register(selector, SelectionKey.OP_READ);
+                if (selectionKey.isAcceptable()) {
+                    SocketChannel client = server.accept();
+                    client.configureBlocking(false);
 
-                }else if(selectionKey.isReadable()){
-                    ByteBuffer cb = ByteBuffer.allocate(2048);
-                    SocketChannel sc = (SocketChannel) selectionKey.channel();
-                    System.out.println(sc);
-                    int flag = sc.read(cb);
-                    if(flag !=-1){
-                        String s = new String(cb.array());
-                        System.out.println("Get Msg : "+cb.get());
-                        cb.clear();
+                    client.write(ByteBuffer.wrap(new String("已经建立连接...").getBytes()));
+                    client.register(selector, SelectionKey.OP_READ);
+                    System.out.println("Accepted new connection from client: " + client);
+
+                } else if (selectionKey.isReadable()) {
+                    SocketChannel client = (SocketChannel) selectionKey.channel();
+                    ByteBuffer buffer = ByteBuffer.allocate(2048);
+                    client.read(buffer);
+                    String output = new String(buffer.array()).trim();
+                    System.out.println("Message read from client: " + output);
+                    if (output.equals("88")) {
+                        client.close();
+                        System.out.println("Client messages are complete; close.");
                     }
-                    sc.write(ByteBuffer.wrap("Server had get your msg,end.".getBytes()));
+
                 }
+                it.remove();
             }
         }
     }

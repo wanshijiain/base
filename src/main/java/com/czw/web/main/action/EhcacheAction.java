@@ -1,13 +1,12 @@
 package com.czw.web.main.action;
 
-import java.text.ParseException;
-
+import com.czw.web.main.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.czw.web.main.service.UserService;
+import java.text.ParseException;
 
 /**
  * 
@@ -20,6 +19,7 @@ public class EhcacheAction {
 	@Autowired
 	private UserService userServiceImpl;
 
+	//url:localhost/ehcache/ will request this method.
 	@RequestMapping
 	public String index(Model model, String id) {
 		try {

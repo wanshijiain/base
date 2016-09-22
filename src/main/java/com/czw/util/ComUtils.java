@@ -1,10 +1,10 @@
 package com.czw.util;
 
-import java.io.File;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
 
 /**
  * @author ZeviChen
@@ -110,7 +110,7 @@ public class ComUtils {
 			path = path.replace(".", "/");
 			filePath = rootPath + "/" + path + "/" + name;
 		}
-		System.out.println("filePath: " + filePath);
+		System.out.println("file path: " + filePath);
 		return filePath;
 	}
 
