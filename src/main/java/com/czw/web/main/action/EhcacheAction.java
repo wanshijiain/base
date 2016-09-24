@@ -14,7 +14,7 @@ import java.text.ParseException;
  * @Date 2016-08-08 10:28:24
  */
 @Controller
-@RequestMapping("ehcache")
+@RequestMapping("main/ehcache")
 public class EhcacheAction {
 	@Autowired
 	private UserService userServiceImpl;

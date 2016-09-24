@@ -12,6 +12,7 @@ import com.czw.web.main.bean.Person;
  * @Date 2016-08-08 13:45:22
  */
 @Controller
+@RequestMapping("main/index")
 public class IndexAction {
 	
 	@RequestMapping
