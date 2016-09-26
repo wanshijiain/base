@@ -49,6 +49,17 @@
 	<!-- root mapping -->
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/main/*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ServletTest</servlet-name>
+		<url-pattern>/servlet/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ServletTest</servlet-name>
+		<servlet-class>com.czw.web.servlet.HostServlet</servlet-class>
+	</servlet>
+	
+	
 </web-app>

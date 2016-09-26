@@ -52,8 +52,8 @@ public class Test1 {
         Map latest = new HashMap();
 
         //传入自定义方法或指令
-        root.put("indexOf",new IndexOfMethod());
-        root.put("upper", new UpperDirective());
+        //root.put("indexOf",new IndexOfMethod());
+        //root.put("upper", new UpperDirective());
         root.put("repeat", new RepeatDirective());
 
         root.put("latestProduct", latest);

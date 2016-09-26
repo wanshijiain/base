@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author ZeviChen ${datetime}
  */
 @Controller
-@RequestMapping("main/freemarker")
+@RequestMapping("/main/freemarker")
 public class FreemarkerAction {
 
-    @RequestMapping("test")
+    @RequestMapping("/test")
     public String test(Model model){
         model.addAttribute("message","send some msgs");
         model.addAttribute("name","张三");
