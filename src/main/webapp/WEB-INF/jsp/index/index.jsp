@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>首页</title>
-<link style="stylesheet" href="/css/index/index.css"/>
+	<link type="text/css" rel="stylesheet" href="/css/index/index.css">
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.ServletRequest;
 import java.text.ParseException;
 
 /**
@@ -14,14 +15,14 @@ import java.text.ParseException;
  * @Date 2016-08-08 10:28:24
  */
 @Controller
-@RequestMapping("/main/ehcache")
+@RequestMapping("main/ehcache")
 public class EhcacheAction {
 	@Autowired
 	private UserService userServiceImpl;
 
 	//url:localhost/ehcache/ will request this method.
 	@RequestMapping
-	public String index(Model model, String id) {
+	public String index(Model model, String id, ServletRequest request) {
 		try {
 			if (id == null)
 				id = "1";

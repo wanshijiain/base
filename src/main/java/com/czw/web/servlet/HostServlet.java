@@ -49,18 +49,18 @@ public class HostServlet extends HttpServlet {
         String servletPath = req.getServletPath();
         String pathInfo = req.getPathInfo();
         String basePath = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+contextPath+"/";
-        System.out.println("contextPath: "+contextPath+" , servletPath: "+servletPath+" , pathInfo: "+pathInfo);
-        System.out.println("ServletContext.realPath: "+servletContext.getRealPath("/"));
-        System.out.println("basePath: "+basePath);
-
         String reqURL = contextPath+servletPath+pathInfo;
+        System.out.println("---contextPath: "+contextPath+" , servletPath: "+servletPath+" , pathInfo: "+pathInfo);
+        System.out.println("---ServletContext.realPath: "+servletContext.getRealPath("/"));
+        System.out.println("---basePath: "+basePath);
+        System.out.println("---reqURL: "+reqURL);
+
         BaseAction action = (BaseAction) requestPath.get(reqURL);
         if(null != action){
             action.dispose(req,resp);
         }else{
             PrintWriter writer = resp.getWriter();
-            writer.write("没有对应的处理路径");
-            writer.flush();
+            writer.println("没有对应的处理路径");
         }
     }
 
