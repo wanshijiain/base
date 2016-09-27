@@ -13,7 +13,7 @@ public abstract class BaseAction {
     protected static Logger log = LoggerFactory.getLogger(BaseAction.class);
 
     /**
-     * Action都需要实现的处理方法
+     * Action都需要实现的处理方法,公共处理方法
      * @return
      */
     public abstract String dispose(HttpServletRequest req, HttpServletResponse resp);

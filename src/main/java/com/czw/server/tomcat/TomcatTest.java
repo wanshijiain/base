@@ -14,7 +14,7 @@ public class TomcatTest {
 	@Test
 	public void test() throws LifecycleException{
 		Tomcat tomcat = new Tomcat();
-		
+
 		tomcat.start();
 		tomcat.stop();
 	}
