@@ -32,7 +32,7 @@ public class Test1 {
 
         /* Create and adjust the configuration singleton */
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_25);
-        String filepath = ComUtils.getFilePath(Test1.class,"com.czw.tmpengine.freemarker","",true);
+        String filepath = ComUtils.getFilePath("com.czw.tmpengine.freemarker","",true);
 
         cfg.setDirectoryForTemplateLoading(new File(filepath));
         cfg.setDefaultEncoding("UTF-8");

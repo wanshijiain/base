@@ -28,8 +28,7 @@ public class TestFileChannel {
     @Test
     public void byteBufferTest() {
         try (
-                RandomAccessFile raf = new RandomAccessFile(ComUtils.getFilePath(
-                        TestFileChannel.class, "com.czw.base.nio", "nio.md", true), "rw");
+                RandomAccessFile raf = new RandomAccessFile(ComUtils.getFilePath("com.czw.base.nio", "nio.md", true), "rw");
                 FileChannel fc = raf.getChannel()
         ) {
 

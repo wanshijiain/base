@@ -1,5 +1,7 @@
 package com.czw.base.jdk7;
 
+import com.czw.util.ComUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,8 +10,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import com.czw.util.ComUtils;
 
 /**
  * 官方文档：http://docs.oracle.com/javase/tutorial/essential/io/file.html
@@ -26,7 +26,7 @@ public class JDK7_NIO2 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Path path = Paths.get(ComUtils.getFilePath(JDK7_NIO2.class, "com.czw.base.jdk7", "", true), "Features.md");
+		Path path = Paths.get(ComUtils.getFilePath("com.czw.base.jdk7", "", true), "Features.md");
 		// tReadAllBytes(path);
 		tNewBufferedReader(path);
 	}

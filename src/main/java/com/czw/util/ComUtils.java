@@ -12,7 +12,8 @@ import static java.lang.System.out;
  * @author ZeviChen
  * @Date 2016-08-02 15:38:17
  */
-public class ComUtils {
+public class ComUtils{
+
     private static long startTime = 0;
     private static long endTime = 0;
     private static boolean flag = false;
@@ -80,14 +81,14 @@ public class ComUtils {
      * <p>
      * isMain when it's true,set src.main.java path<br/>
      * isMain when it's false,set src.main.resources path<br/>
+     * 当打包war在server中运行，会出现找不到路径的错误
      *
-     * @param clazz
      * @param path
      * @param name
      * @return filepath String
      */
-    public static String getFilePath(Class<?> clazz, String path, String name, boolean isMain) {
-        String rootPath = getProjectPath(clazz);
+    public static String getFilePath(String path, String name, boolean isMain) {
+        String rootPath = getProjectPath(ComUtils.class);
         String filePath = "";
 
         String javaPath = "src.main.java";
@@ -192,7 +193,8 @@ public class ComUtils {
     }
 
     /**
-     * 浅拷贝实现Clonable接口默认，深拷贝对象使用该方法
+     * 浅拷贝实现Clonable接口默认，深拷贝对象使用该方法(深拷贝也就是序列化对象的过程)
+     * 实现Serializable接口只是说明该类可以被序列化，
      * @param obj
      * @param <T>
      * @return
@@ -203,7 +205,7 @@ public class ComUtils {
         ByteArrayInputStream input = new ByteArrayInputStream(output.toByteArray());
         try (
                 ObjectOutputStream oos = new ObjectOutputStream(output);
-                ObjectInputStream ois = new ObjectInputStream(input);
+                ObjectInputStream ois = new ObjectInputStream(input)
         ) {
 
             oos.writeObject(obj);

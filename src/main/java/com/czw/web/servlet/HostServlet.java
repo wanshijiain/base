@@ -1,6 +1,11 @@
 package com.czw.web.servlet;
 
+import com.czw.util.DateUtils;
+import com.czw.web.servlet.action.SkipUploadAction;
 import com.czw.web.servlet.action.Test1Action;
+import com.czw.web.servlet.action.UploadAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -10,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,15 +23,18 @@ import java.util.Map;
  * @author ZeviChen ${datetime}
  */
 public class HostServlet extends HttpServlet {
+    protected static Logger log = LoggerFactory.getLogger(HostServlet.class);
 
     private static Map<String,Object> requestPath = new HashMap<>();
     static{
         requestPath.put("/servlet/test1",new Test1Action());
+        requestPath.put("/servlet/skiptoupload",new SkipUploadAction());
+        requestPath.put("/servlet/upload",new UploadAction());
     }
 
     @Override
     public void init() throws ServletException {
-        super.init();
+        log.info("init datetime = {}", DateUtils.dtts(new Date()));
     }
 
     @Override

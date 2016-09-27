@@ -1,65 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
-	<display-name>base</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-	
-	<!-- 
-		可以同时配置ContextLoaderListener和DispatcherServlet，为了将spring的配置文件和springmvc的配置文件分开用
-		http://spring.cndocs.tk/beans.html#beans-java-instantiating-container-web
-	 -->
-	
-	<!-- annotation bean configuration -->
-	<!-- <context-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value> 
-		</context-param> -->
+<web-app
+        version="3.0"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-	<!-- 配置文件 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			classpath:applicationContext.xml,
-			classpath:spring/applicationContext-*.xml
-		</param-value>
-	</context-param>
-	
-	<!-- spring -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+    <display-name>base</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 
-	<!-- springmvc -->
-	<servlet>
-		<servlet-name>springmvc</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:springmvc-servlet.xml</param-value>
-		</init-param>
-		<!-- <init-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplciationContext</param-value> 
-			</init-param> <init-param> <param-name>contextConfigLocation</param-name> 
-			<param-value>com.czw.spring.web.config.WebConfig</param-value> </init-param> -->
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+    <!--
+        可以同时配置ContextLoaderListener和DispatcherServlet，为了将spring的配置文件和springmvc的配置文件分开用
+        http://spring.cndocs.tk/beans.html#beans-java-instantiating-container-web
+     -->
 
-	<!-- root mapping -->
-	<servlet-mapping>
-		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>ServletTest</servlet-name>
-		<url-pattern>/servlet/*</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>ServletTest</servlet-name>
-		<servlet-class>com.czw.web.servlet.HostServlet</servlet-class>
-	</servlet>
-	
-	
+    <!-- annotation bean configuration -->
+    <!-- <context-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+        </context-param> -->
+
+    <!-- 配置文件 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:applicationContext.xml,
+            classpath:spring/applicationContext-*.xml
+        </param-value>
+    </context-param>
+
+    <!-- spring -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- springmvc -->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc-servlet.xml</param-value>
+        </init-param>
+        <!-- <init-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplciationContext</param-value>
+            </init-param> <init-param> <param-name>contextConfigLocation</param-name>
+            <param-value>com.czw.spring.web.config.WebConfig</param-value> </init-param> -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- root mapping -->
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- ==================Servlet======================== -->
+
+    <filter-mapping>
+        <filter-name>ImpurityFilter</filter-name>
+        <url-pattern>/servlet/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>ImpurityFilter</filter-name>
+        <filter-class>com.czw.web.servlet.filter.ImpurityFilter</filter-class>
+    </filter>
+    <servlet>
+        <servlet-name>ServletTest</servlet-name>
+        <servlet-class>com.czw.web.servlet.HostServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>52428800</max-file-size>
+            <max-request-size>52428800</max-request-size>
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletTest</servlet-name>
+        <url-pattern>/servlet/*</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

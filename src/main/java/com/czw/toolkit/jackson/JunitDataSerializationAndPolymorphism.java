@@ -1,17 +1,5 @@
 package com.czw.toolkit.jackson;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.io.FileUtils;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import com.czw.toolkit.jackson.entity.Animal;
 import com.czw.toolkit.jackson.entity.Elephant;
 import com.czw.toolkit.jackson.entity.Lion;
@@ -21,6 +9,13 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FileUtils;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ZeviChen
@@ -36,7 +31,7 @@ public class JunitDataSerializationAndPolymorphism {
 	@Test
 	@Ignore
 	public void test() throws IOException{
-		File f = new File(ComUtils.getFilePath(this.getClass(),"com.czw", outputFile,true));
+		File f = new File(ComUtils.getFilePath("com.czw", outputFile,true));
 		FileWriter fw = new FileWriter(f);
 		fw.write("{}");
 		fw.close();
@@ -63,7 +58,7 @@ public class JunitDataSerializationAndPolymorphism {
  
         ObjectMapper mapper = new ObjectMapper();
         
-        File file = new File(ComUtils.getFilePath(this.getClass(),"com.czw.toolkit.jackson", outputFile,true));
+        File file = new File(ComUtils.getFilePath("com.czw.toolkit.jackson", outputFile,true));
         mapper.writerWithDefaultPrettyPrinter().writeValue(new FileWriter(file), zoo);
 	}
 	
