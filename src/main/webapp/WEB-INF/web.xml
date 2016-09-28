@@ -5,11 +5,42 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
+    <!--在tomcat-user.xml中配置如下用户及角色
+      <role rolename="member"/>
+      <user username="zevi" password="123" roles="member"/>
+    -->
+    <security-role>
+        <role-name>role1</role-name>
+    </security-role>
+    <security-constraint>
+        <web-resource-collection>
+            <http-method>GET</http-method>
+            <web-resource-name>protect res package</web-resource-name>
+            <url-pattern>/res/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <!-- 这里的member要与tomcat-user.xml中配置的role一致 -->
+            <role-name>role1</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <!-- 验证方式，可选的值为： "BASIC", "DIGEST", "FORM", "CLIENT-CERT" -->
+        <auth-method>BASIC</auth-method>
+        <!-- 使用的Realm名字，注意这里不能有空格 -->
+        <realm-name>TestConstraints</realm-name>
+    </login-config>
+
     <display-name>base</display-name>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+    <!--激活tomcat默认servlet来访问静态资源-->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
 
     <!--
         可以同时配置ContextLoaderListener和DispatcherServlet，为了将spring的配置文件和springmvc的配置文件分开用
@@ -55,7 +86,6 @@
     </servlet-mapping>
 
     <!-- ==================Servlet======================== -->
-
     <filter-mapping>
         <filter-name>ImpurityFilter</filter-name>
         <url-pattern>/servlet/*</url-pattern>
@@ -77,6 +107,8 @@
         <servlet-name>ServletTest</servlet-name>
         <url-pattern>/servlet/*</url-pattern>
     </servlet-mapping>
+
+
 
 
 </web-app>
