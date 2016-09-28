@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Context>
+    <!--
+        默认类和资源加载顺序：
+            Bootstrap classes of your JVM
+            /WEB-INF/classes of your web application
+            /WEB-INF/lib/*.jar of your web application
+            System class loader classes (described above)
+            Common class loader classes (described above)
+
+        该配置的类和资源加载顺序
+            Bootstrap classes of your JVM
+            System class loader classes (described above)
+            Common class loader classes (described above)
+            /WEB-INF/classes of your web application
+            /WEB-INF/lib/*.jar of your web application
+        注：如果属性配置和server.xml中的有重复，以server.xml中的配置为准
+    -->
+    <Loader delegate="true" reloadable="true"/>
+</Context>
