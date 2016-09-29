@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("freemarker")
-public class FreemarkerAction {
+public class FreemarkerAction extends BaseAction{
 
     @RequestMapping("/test")
     public String test(Model model){

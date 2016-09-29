@@ -34,7 +34,7 @@ public class HostServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        log.info("init datetime = {}", DateUtils.dtts(new Date()));
+        log.info("init() datetime = {}", DateUtils.dtts(new Date()));
     }
 
     @Override
@@ -44,8 +44,6 @@ public class HostServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
 

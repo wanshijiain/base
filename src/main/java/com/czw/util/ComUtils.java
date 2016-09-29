@@ -1,5 +1,6 @@
 package com.czw.util;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,7 @@ import static java.lang.System.out;
  * @author ZeviChen
  * @Date 2016-08-02 15:38:17
  */
-public class ComUtils{
+public class ComUtils {
 
     private static long startTime = 0;
     private static long endTime = 0;
@@ -195,6 +196,7 @@ public class ComUtils{
     /**
      * 浅拷贝实现Clonable接口默认，深拷贝对象使用该方法(深拷贝也就是序列化对象的过程)
      * 实现Serializable接口只是说明该类可以被序列化，
+     *
      * @param obj
      * @param <T>
      * @return
@@ -223,8 +225,9 @@ public class ComUtils{
         // String l =
         //// "======================="+title+"--start=======================";
         // System.out.println(l.length());
-        out.println("======================创建Present实例--start======================".length());
-        out.println("======================fewfew--end========================".length());
+//        out.println("======================创建Present实例--start======================".length());
+//        out.println("======================fewfew--end========================".length());
+        System.out.println(DigestUtils.sha1Hex("123456"));
     }
 
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping("index")
-public class IndexAction {
+public class IndexAction extends BaseAction{
 	
 	@RequestMapping
 	public String execute(){

@@ -3,12 +3,32 @@
         version="3.0"
         xmlns="http://java.sun.com/xml/ns/javaee"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0_1.xsd">
+
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <display-name>base</display-name>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+    <!--=============================tomcat constrainits=================================-->
 
     <!--在tomcat-user.xml中配置如下用户及角色
      <role rolename="member"/>
@@ -19,10 +39,12 @@
     </security-role>
     <security-constraint>
         <web-resource-collection>
+            <!--可选,如果不设置,表示将禁止所有 HTTP 方法访问相应的资源-->
             <http-method>GET</http-method>
             <web-resource-name>protect res package</web-resource-name>
             <url-pattern>/res/*</url-pattern>
         </web-resource-collection>
+        <!--可选，没有表示任何用户都可以访问，如果<role-name/>为空，任何角色都不能访问-->
         <auth-constraint>
             <role-name>member</role-name>
         </auth-constraint>
@@ -107,11 +129,14 @@
 
     <!--session-config for test-->
     <session-config>
-        <session-timeout>1</session-timeout>
+        <!--会话跟踪方式,COOKIE和sessionid参数url重写，tomcat7中加入SSL跟踪-->
+        <tracking-mode>COOKIE</tracking-mode>
+        <!--分钟-->
+        <session-timeout>20</session-timeout>
         <cookie-config>
             <domain>www.google.com</domain>
             <comment>local domain</comment>
-            <max-age>6000</max-age>
+            <max-age>120000</max-age>
         </cookie-config>
     </session-config>
 
@@ -120,7 +145,6 @@
         <env-entry-type>java.lang.String</env-entry-type>
         <env-entry-value>在httpServlet子类中通过@Resource(value="resVale")获取当前值</env-entry-value>
     </env-entry>
-
 
 
     <!--
