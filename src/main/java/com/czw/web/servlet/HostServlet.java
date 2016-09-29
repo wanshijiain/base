@@ -64,12 +64,14 @@ public class HostServlet extends HttpServlet {
         System.out.println("---basePath: "+basePath);
         System.out.println("---reqURL: "+reqURL);
 
+
         BaseAction action = (BaseAction) requestPath.get(reqURL);
         if(null != action){
             action.dispose(req,resp);
         }else{
             PrintWriter writer = resp.getWriter();
             writer.println("没有对应的处理路径");
+            writer.close();
         }
     }
 

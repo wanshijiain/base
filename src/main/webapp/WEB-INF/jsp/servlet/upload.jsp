@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>上传文件</title>
-    <link rel="stylesheet" type="text/css" href="/js/lib/jquery-3.1.1.js"/>
+    <link rel="stylesheet" type="text/css" href="/js/jquery-3.1.1.js"/>
     <script type="text/javascript">
         $.ajax({
             url: '/servlet/upload',

@@ -51,6 +51,7 @@ public class Test1Action extends BaseAction {
             writer.append("中文显示<br/>");
             writer.append("sessionid : "+session.getId()+"<br/>");
             writer.flush();
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

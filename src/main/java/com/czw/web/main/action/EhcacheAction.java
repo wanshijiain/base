@@ -15,14 +15,14 @@ import java.text.ParseException;
  * @Date 2016-08-08 10:28:24
  */
 @Controller
-@RequestMapping("main/ehcache")
+@RequestMapping("ehcache")
 public class EhcacheAction {
 	@Autowired
 	private UserService userServiceImpl;
 
 	//url:localhost/ehcache/ will request this method.
 	@RequestMapping
-	public String index(Model model, String id, ServletRequest request) {
+	public String execute(Model model, String id, ServletRequest request) {
 		try {
 			if (id == null)
 				id = "1";

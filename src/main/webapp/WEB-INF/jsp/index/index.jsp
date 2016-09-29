@@ -19,6 +19,9 @@
 		</select>
 		<input type="submit" value="提交"/>
 	</form>
+	<br/>
+	<a href="/main//toLogin">登录</a>
+
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

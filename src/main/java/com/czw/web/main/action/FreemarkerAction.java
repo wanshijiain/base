@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author ZeviChen ${datetime}
  */
 @Controller
-@RequestMapping("main/freemarker")
+@RequestMapping("freemarker")
 public class FreemarkerAction {
 
     @RequestMapping("/test")

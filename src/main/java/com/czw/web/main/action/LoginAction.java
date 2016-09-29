@@ -19,7 +19,7 @@ public class LoginAction {
     @RequestMapping(value="login",method = RequestMethod.POST)
     @ResponseBody
     public String login(String account,String password){
-        System.out.println("account:"+account+" , password"+password);
+        System.out.println("account:"+account+" ,  password"+password);
         return "success";
     }
 }

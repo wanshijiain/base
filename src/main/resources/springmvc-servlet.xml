@@ -12,8 +12,11 @@
            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
             http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
+    <!--测试了几遍，需要这个配置来启动mvc的注解-->
+    <mvc:annotation-driven/>
     <context:component-scan base-package="com.czw.web.main"/>
 
+    <mvc:resources mapping="/js/**" location="/js/" />
 
     <!-- 注意：缓存cachemanager的配置需要在mvc中进行配置，在applicationContext.xml中配置不生效 -->
     <!-- 缓存配置,这个注解配置要在主spring配置中才生效 -->
