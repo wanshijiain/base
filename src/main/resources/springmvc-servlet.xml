@@ -18,6 +18,28 @@
 
     <mvc:resources mapping="/js/**" location="/js/" />
 
+    <!--自定义过滤器，访问时间段2-23点-->
+   <!-- <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="officeHoursInterceptor"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="officeHoursInterceptor"
+          class="com.czw.web.main.interceptor.TimeBasedAccessInterceptor">
+        <property name="openingTime" value="2"/>
+        <property name="closingTime" value="23"/>
+    </bean>
+    -->
+
+    <!--上传文件限制-->
+    <!--<bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000"/>
+    </bean>-->
+
     <!-- 注意：缓存cachemanager的配置需要在mvc中进行配置，在applicationContext.xml中配置不生效 -->
     <!-- 缓存配置,这个注解配置要在主spring配置中才生效 -->
     <cache:annotation-driven cache-manager="cacheManager"/>

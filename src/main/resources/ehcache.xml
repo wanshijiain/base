@@ -14,7 +14,7 @@
 	CacheManagerEventListenerFactory的属性：
 	*class ：CacheManagerEventListenerFactory的一个实现类。
 	*properties ：CacheManagerEventListenerFactory的属性值，以逗号(,)分割多个属性。
-	如果没有实现类被指定，则系统不创建CacheManager的监听器，没有默认值
+	如果没有实现类被指定，则系统不创建CacheManager的监听器,没有默认值
 	
 	<cacheManagerEventListenerFactory class="" properties="" />-->
 	
