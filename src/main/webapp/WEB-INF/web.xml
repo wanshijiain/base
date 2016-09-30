@@ -93,6 +93,22 @@
     <!-- <context-param> <param-name>contextClass</param-name> <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
         </context-param> -->
 
+    <!--
+        由于ServletRequest.getParam*()只适用于http post表单提交，所以spring提供了http put,patch比较表单的过滤器 ->来自spring-web模块
+        拦截content = application/x-www-form-urlencoded的请求
+        注意：由于HttpPutFormContentFilter已经处理了请求体，所以不应该再给PUT和PATCH的请求配置其他依赖于处理"application/x-www-form-urlencoded"的转换器。
+        这里包括了 @RequestBody MultiValueMap<String, String> 和 HttpEntity<MultiValueMap<String, String>>。
+     -->
+    <filter>
+        <filter-name>httpPutFormFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>httpPutFormFilter</filter-name>
+        <servlet-name>springmvc</servlet-name>
+    </filter-mapping>
+
     <!-- 配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>

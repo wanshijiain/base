@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.async.DeferredResult;
 
 /**
  * @author ZeviChen
@@ -27,5 +29,20 @@ public class IndexAction extends BaseAction{
 		model.addAttribute("person",person);
 		return "index/pt";
 	}
-	
+
+	/**
+	 * springmvc不管新启的线程的后续处理结果，可用户jms,计划任务(定时器...)
+	 * @return
+	 */
+	@RequestMapping("/quotes")
+	@ResponseBody
+	public DeferredResult<String> quotes() {
+		DeferredResult<String> deferredResult = new DeferredResult<String>();
+		// 将 deferredResult 保存到内存队列
+		return deferredResult;
+	}
+
+	// 在其他线程中...
+	//deferredResult.setResult(data);
+
 }

@@ -1,14 +1,8 @@
 package com.czw.db.mongodb.morphia;
 
-import java.util.List;
+import org.mongodb.morphia.annotations.*;
 
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Field;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Index;
-import org.mongodb.morphia.annotations.Indexes;
-import org.mongodb.morphia.annotations.Property;
-import org.mongodb.morphia.annotations.Reference;
+import java.util.List;
 
 /**
  * @author ZeviChen
@@ -16,7 +10,7 @@ import org.mongodb.morphia.annotations.Reference;
  */
 @Entity("employees")
 @Indexes(
-    @Index(fields = @Field("salary"))
+        @Index(fields = @Field("salary"))
 )
 class Employee {
     @Id
