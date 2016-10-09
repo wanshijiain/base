@@ -19,12 +19,15 @@ import java.util.concurrent.Callable;
 public class LoginAction extends BaseAction{
 
     /**
+     * Header字段:
      * Host                    localhost:8080
      * Accept                  text/html,application/xhtml+xml,application/xml;q=0.9
      * Accept-Language         fr,en-gb;q=0.7,en;q=0.3
      * Accept-Encoding         gzip,deflate
      * Accept-Charset          ISO-8859-1,utf-8;q=0.7,*;q=0.7
-     * Keep-Alive              300
+     * Keep-Alive              300  http连接保持时间
+     * Cache-Control           max-age=315360000    强缓存，浏览器通过该字段及客户端当前时间值判断缓存有效性来启用本地缓存
+     * Expires                 具体过期时间，Cache-Control优先级更高
      *
      * @RequestHeader 用于 Map<String, String>,MultiValueMap<String, String>, 或 HttpHeaders 参数，map 会填充所有头字段值
      * 例如：@RequestHeader Map<String,String> headers
