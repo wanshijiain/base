@@ -19,7 +19,7 @@ import java.util.concurrent.Callable;
 public class LoginAction extends BaseAction{
 
     /**
-     * Header字段:
+     * Header字段: 
      * Host                    localhost:8080
      * Accept                  text/html,application/xhtml+xml,application/xml;q=0.9
      * Accept-Language         fr,en-gb;q=0.7,en;q=0.3
