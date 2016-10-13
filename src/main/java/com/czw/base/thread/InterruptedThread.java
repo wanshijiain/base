@@ -4,6 +4,8 @@ package com.czw.base.thread;
  * 使用interrupt停止线程,stop...作废
  * break停止，return停止和异常捕捉停止
  *
+ * 在循环中设置synchronized(str){}也能达到同步字段的作用类似volatile
+ *
  * 建议抛出异常，便于上层处理...
  *
  * @author ZeviChen , 2016/10/12.
