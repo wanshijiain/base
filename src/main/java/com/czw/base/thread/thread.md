@@ -87,6 +87,10 @@ main(){
 jps     //查看死锁
 jstack -l 3305  //查看具体线程id
 
+###3.10.wait,notify
+notify在执行后必须要执行完同步代码块才能释放锁
+
+当线程处于wait状态,再调用interrupt会抛出异常
 
 
 
