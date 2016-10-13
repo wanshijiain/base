@@ -1,5 +1,6 @@
 package com.czw.spring.base;
 
+import com.czw.spring.base.ioc.Person;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
@@ -8,8 +9,6 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
-
-import com.czw.spring.base.ioc.Person;
 
 /**
  * @author ZeviChen
