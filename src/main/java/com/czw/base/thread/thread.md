@@ -92,8 +92,15 @@ notify在执行后必须要执行完同步代码块才能释放锁
 
 当线程处于wait状态,再调用interrupt会抛出异常
 
+##4.ThreadGroup
+线程有组的概念，并且组里面还可以添加组
+可以通过组来批量停止其中的线程group.interrupt()
+可以获取线程组的上一级线程组group.parent().parent()
 
-
+##5.SimpleDateFormat
+该类是非线程安全的，因为多线程处理SimpleDateFormat中的状态会出现问题
+可以通过工具类为每个线程创建单独的new SimpleDateFormat()对象进行处理
+或者将SimpleDateFormat对象加入ThreahLocal<SimpleDateFormat>中，这个类是线程关联对象的
 
 
 

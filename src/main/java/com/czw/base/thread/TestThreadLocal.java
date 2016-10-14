@@ -7,6 +7,7 @@ import java.util.Date;
 /**
  * ThreadLocal获取当前线程存储的数据
  *
+ *
  * @author ZeviChen 2016/10/14 11:19
  */
 public class TestThreadLocal {
