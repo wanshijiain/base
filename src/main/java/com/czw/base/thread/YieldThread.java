@@ -4,8 +4,7 @@ import com.czw.util.ComUtils;
 
 /**
  * 防止线程独占资源
- *
- * @author ZeviChen ${datetime}
+ * @author ZeviChen 2016/10/14 9:58
  */
 public class YieldThread {
     public static void main(String[] args){
