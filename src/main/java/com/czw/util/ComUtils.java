@@ -197,25 +197,29 @@ public class ComUtils {
      * 浅拷贝实现Clonable接口默认，深拷贝对象使用该方法(深拷贝也就是序列化对象的过程)
      * 实现Serializable接口只是说明该类可以被序列化，
      *
-     * @param obj
      * @param <T>
      * @return
      */
-    public static <T extends Serializable> T clone(T obj) {
+    @SuppressWarnings("unchecked")
+	public static <T extends Serializable> T clone(T obj) {
         T cloneObj = null;
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        ByteArrayInputStream input = new ByteArrayInputStream(output.toByteArray());
-        try (
-                ObjectOutputStream oos = new ObjectOutputStream(output);
-                ObjectInputStream ois = new ObjectInputStream(input)
-        ) {
-
-            oos.writeObject(obj);
+        ByteArrayOutputStream output = null;
+        ObjectOutputStream oos = null;
+        ByteArrayInputStream input = null;
+        ObjectInputStream ois = null;
+        try{
+        	output = new ByteArrayOutputStream();
+        	oos = new ObjectOutputStream(output);
+        	oos.writeObject(obj);
+        	
+        	input = new ByteArrayInputStream(output.toByteArray());
+        	ois = new ObjectInputStream(input);
             cloneObj = (T) ois.readObject();
-
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }finally {
+			//close
+		}
         return cloneObj;
     }
 
