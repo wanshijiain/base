@@ -8,7 +8,7 @@ package com.czw.model.singleton;
 public enum EnumSingleton {
 	INSTANCE;
 	
-	private EnumSingleton(){
+	EnumSingleton(){
 		//...
 	}
 }

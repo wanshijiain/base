@@ -13,7 +13,10 @@ public class LazySingleton {
 	
 	public static LazySingleton getInstance(){
 		if(fullSingleton == null)
-			fullSingleton = new LazySingleton();
+			synchronized (LazySingleton.class){
+				if(fullSingleton == null)
+					fullSingleton = new LazySingleton();
+			}
 		return fullSingleton;
 	}
 	
