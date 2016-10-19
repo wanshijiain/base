@@ -31,9 +31,9 @@ public class MainTest {
 		objFitness.walk();
 		objFitness.treadmill();
 		
-		System.out.println("==================InterfaceAdapter===================");
-		InterfaceOne io = new InterfaceOne();
-		InterfaceTwo it = new InterfaceTwo();
+		System.out.println("==================FitnessAdapter===================");
+		FitnessAdapterOne io = new FitnessAdapterOne();
+		FitnessAdapterTwo it = new FitnessAdapterTwo();
 		
 		io.treadmill();
 		io.walk();

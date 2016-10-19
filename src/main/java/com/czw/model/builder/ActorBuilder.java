@@ -5,7 +5,11 @@ package com.czw.model.builder;
  */
 public abstract class ActorBuilder {
     protected Actor actor = new Actor();
-
+    
+    public ActorBuilder(){
+        System.out.println("abstractClass.ActorBuilder");
+    }
+    
     public abstract void buildType();
     public abstract void buildFace();
     public abstract void buildHairstyle();
