@@ -1,6 +1,9 @@
 package com.czw.model.adapter;
 
 /**
+ * 缺省适配器的作用用于:当适配器不需要实现所有的方法,通过抽象类实现默认方法
+ * 由子类覆盖默认方法
+ *
  * @author ZeviChen
  * @Date 2016-08-11 15:51:29
  */
