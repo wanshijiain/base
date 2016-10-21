@@ -7,7 +7,7 @@ public class GenericDemo1 {
 	 */
 	public static void main(String[] args) {
 
-//		Tool t=new Tool();
+//		IntelliJ t=new IntelliJ();
 //		t.setObject(new Teacher());
 //		Worker w=(Worker)t.getObject();
 		
