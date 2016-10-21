@@ -22,7 +22,10 @@ public class HelloHandler extends DefaultHandler {
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		System.out.println("hellohandler ...");
-		super.handle(target, baseRequest, request, response);
+//		super.handle(target, baseRequest, request, response);
+		((Request)baseRequest).setHandled(true);
+		response.getWriter().append("Hello World!!");
+
 	}
 
 }

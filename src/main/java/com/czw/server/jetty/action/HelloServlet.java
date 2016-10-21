@@ -4,6 +4,7 @@
 package com.czw.server.jetty.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -21,7 +22,8 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 		System.out.println("HelloServlet ...");
-		super.service(req, res);
+		PrintWriter pw = res.getWriter();
+		pw.append("Hello World");
 	}
 	
 	
